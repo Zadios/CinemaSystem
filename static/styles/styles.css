@@ -1,0 +1,161 @@
+/* Actualizaciones de las combinaciones de teclas … 
+/* El jueves, 1 de agosto de 2024, se actualizarán las combinaciones de teclas de Drive para que puedas navegar con las primeras letras.Más información
+
+/*Esto es el diseño de la seccion peliculas*/
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; /* Espacio entre las dos películas */
+    padding: 50px;
+    color: white
+    
+    
+}
+
+.movie {
+    width: 613px;
+    height: 424px;
+    position: relative;
+    padding: 10px;
+}
+
+.panel {
+    position: absolute;
+    top: 0.44px;
+    height: 423.56px;
+    border-top-left-radius: 8.27px;
+    border-top-right-radius: 8.27px;
+}
+
+.left {
+    width: 296.99px;
+    left: 0;
+}
+
+.right {
+    width: 316.01px;
+    left: 296.99px;
+    background: #4E4E4E;
+}
+
+.text {
+    position: absolute;
+    word-wrap: break-word;
+}
+
+.title {
+    left: 316.84px;
+    top: 12.02px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.movie-title {
+    left: 69px;
+    top: 97px;
+    font-size: 32px;
+    font-weight: 700;
+    
+}
+
+.detail {
+    left: 329.25px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#duracion {
+    top: 67.45px;
+}
+
+#clasificacion {
+    top: 104.68px;
+}
+
+#genero {
+    top: 141.90px;
+}
+
+#formato {
+    top: 179.13px;
+}
+
+#estreno {
+    top: 216.36px;
+}
+
+#puntaje {
+    top: 253.58px;
+}
+
+.image-container {
+    width: 148.91px;
+    height: 148.91px;
+    position: absolute;
+    left: 74.45px;
+    top: 184.92px;
+}
+
+.image-inner {
+    width: 124.09px;
+    height: 124.09px;
+    position: relative;
+    left: 12.41px;
+    top: 12.41px;
+}
+
+.white-border, .black-border, .white-line {
+    position: absolute;
+}
+
+.white-border {
+    width: 124.09px;
+    height: 124.09px;
+    background: white;
+    border: 3.31px solid white;
+}
+
+.black-border {
+    width: 74.45px;
+    height: 74.45px;
+    left: 24.82px;
+    top: 24.82px;
+    background: black;
+    border: 3.31px solid black;
+}
+
+.white-line {
+    width: 62.04px;
+    height: 0;
+    left: 62.04px;
+    top: 124.09px;
+    border: 3.31px solid white;
+}
+
+.button {
+    width: 275.48px;
+    height: 33.09px;
+    position: absolute;
+    left: 317px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.buy-tickets {
+    top: 368px;
+    background: #D00000;
+}
+
+.synopsis {
+    top: 313.05px;
+    width: 275px;
+    height: 33px;
+    background: white;
+    color: black;
+}
+
