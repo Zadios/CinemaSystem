@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # Mis Apps
     'Applications.CinemaSystemApp',
     'Applications.Movie',
+    'Applications.Register',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Para mostrar las imágenes
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Registro de usuarios
+AUTH_USER_MODEL = 'Register.CustomUser'
