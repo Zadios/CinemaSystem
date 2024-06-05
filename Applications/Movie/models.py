@@ -37,7 +37,7 @@ class Film(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField('Nombre', max_length=100, null=True)
     synopsis = models.TextField('Sinopsis', null=True)
-    image = models.ImageField('Imagen', upload_to='static/img/covers/', null=True, blank=True)
+    image = models.ImageField('Imagen', upload_to='covers/', null=True, blank=True)
     duration = models.IntegerField('Duración', null=True)
     genre = models.CharField('Género', max_length=30, choices=GENRE_CHOICES, default='')
     subgenre = models.CharField('Subgénero', max_length=30, choices=GENRE_CHOICES, default='', blank=True, null=True)
