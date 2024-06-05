@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +9,23 @@
 </head>
 <body>
     <div class="container">
-        {% for pelicula in peliculas %}
+        {% for film in films %}
             <div class="movie">
                 <div>
-                    <img class="panel left" src="{{ pelicula.imagen.url }}" alt="{{ pelicula.nombre }}">
+                    <img class="panel left" src="{{ film.image.url }}" alt="{{ film.name }}">
                 </div>
                 <div class="panel right"></div>
-                <div class="text title">{{ pelicula.nombre }}</div>
-                <div class="text detail" id="duracion">{{ pelicula.duracion }} min</div>
-                <div class="text detail" id="genero">{{ pelicula.genero }}</div>
+                <div class="text title">{{ film.name }}</div>
+                <div class="text detail" id="duracion">{{ film.duration }} min</div>
+                <div class="text detail" id="genero">{{ film.genre }}</div>
+                <div class="text detail" id="estreno">{{ film.release_date }}</div>
+                <div class="text detail" id="formatos">
+                    {% for format in film.formats.all %}
+                        {{ format.name }}
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="text detail" id="restriccion">{{ film.age_restriction }}</div>
                 
                 <div class="button buy-tickets">Comprar Entradas</div>
                 <div class="button synopsis">Ver Sinopsis</div>
