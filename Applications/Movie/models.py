@@ -43,7 +43,7 @@ class Film(models.Model):
     subgenre = models.CharField('Subgénero', max_length=30, choices=GENRE_CHOICES, default='', blank=True, null=True)
     formats = models.ManyToManyField(Format, verbose_name='Formato', related_name='films')
     release_date = models.DateField('Fecha de Lanzamiento', null=True, blank=True)
-    age_restriction = models.CharField(max_length=2, choices=AGE_RESTRICTION_CHOICES)
+    age_restriction = models.CharField('Restricción Edad', max_length=2, choices=AGE_RESTRICTION_CHOICES)
 
     def __str__(self):
         return f"{self.id} - {self.name}"
