@@ -27,11 +27,10 @@ class Film(models.Model):
     ]
 
     AGE_RESTRICTION_CHOICES = [
-        ('0', 'G'),
-        ('7', 'PG'),
-        ('13', 'PG-13'),
-        ('17', 'R'),
-        ('18', 'NC-17'),
+        ('ATP', 'ATP'),
+        ('13+', 'PM13'),
+        ('16+', 'PM16'),
+        ('18+', 'PM18'),
     ]
 
     id = models.AutoField(primary_key=True)
@@ -43,7 +42,8 @@ class Film(models.Model):
     subgenre = models.CharField('Subgénero', max_length=30, choices=GENRE_CHOICES, default='', blank=True, null=True)
     formats = models.ManyToManyField(Format, verbose_name='Formato', related_name='films')
     release_date = models.DateField('Fecha de Lanzamiento', null=True, blank=True)
-    age_restriction = models.CharField(max_length=2, choices=AGE_RESTRICTION_CHOICES)
+    age_restriction = models.CharField('Restricción de edad', max_length=4, choices=AGE_RESTRICTION_CHOICES)
+    upcoming_releases = models.BooleanField('Próximos Lanzamientos',default=False)
 
     def __str__(self):
         return f"{self.id} - {self.name}"

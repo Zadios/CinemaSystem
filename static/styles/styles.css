@@ -1,161 +1,216 @@
-/* Actualizaciones de las combinaciones de teclas … 
-/* El jueves, 1 de agosto de 2024, se actualizarán las combinaciones de teclas de Drive para que puedas navegar con las primeras letras.Más información
+:root {
+    --blanco: #ffffff;
+    --oscuro: #212121;
+    --primario: #D00000;
+    --gris: #757575;
+}
 
-/*Esto es el diseño de la seccion peliculas*/
+html {
+    font-size: 62.5%;
+}
 
-.container {
+body {
+    font-size: 16px; /* 1rem = 10px */
+    font-family: "Inter", sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--blanco);
+    display: block;
+    background-color: var(--primario);
+    padding: 2rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+    color: var(--blanco);
+    margin-top: 0.5rem;
+}
+
+h3 {
+    font-size: 2.2rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+.cartelera {
+    margin-top: auto;
+    margin-right: 17.44%;
+    margin-bottom: auto;
+    margin-left: 17.44%;
+}
+
+.centrar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-bg {
+    background-color: var(--primario);
+}
+
+.navegacion-principal a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 1.7rem;
+    font-weight: 600;
+    padding: 1rem;
+}
+
+.navegacion-principal a:hover {
+    background-color: rgba(255, 128, 114, 0.7);
+    color: var(--blanco);
+}
+
+.img-izq {
+    width: 16.5rem;
+    justify-self: start;
+    display: flex;
+}
+
+.img-der {
+    display: flex;
+    justify-self: end;
+}
+
+.img-der2 {
+    display: flex;
+    justify-self: flex-start;
+}
+
+.menu {
+    background-color: var(--primario);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner {
+    background-color: var(--primario);
+    max-width: 125rem;
+    height: 42.5rem;
+    margin-top: 3rem;
+    border-radius: 1rem;
+    position: relative;
+}
+
+.ubicacion {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.cuadricula {
+    margin-top: 2rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px; /* Espacio entre las dos películas */
-    padding: 50px;
-    color: white
-    
-    
+    gap: 2rem; /* Espacio entre las tarjetas */
 }
 
-.movie {
-    width: 613px;
-    height: 424px;
-    position: relative;
-    padding: 10px;
-}
-
-.panel {
-    position: absolute;
-    top: 0.44px;
-    height: 423.56px;
-    border-top-left-radius: 8.27px;
-    border-top-right-radius: 8.27px;
-}
-
-.left {
-    width: 296.99px;
-    left: 0;
-}
-
-.right {
-    width: 316.01px;
-    left: 296.99px;
-    background: #4E4E4E;
-}
-
-.text {
-    position: absolute;
-    word-wrap: break-word;
-}
-
-.title {
-    left: 316.84px;
-    top: 12.02px;
-    font-size: 32px;
-    font-weight: 600;
-}
-
-.movie-title {
-    left: 69px;
-    top: 97px;
-    font-size: 32px;
-    font-weight: 700;
-    
-}
-
-.detail {
-    left: 329.25px;
-    font-size: 20px;
-    font-weight: 400;
-}
-
-#duracion {
-    top: 67.45px;
-}
-
-#clasificacion {
-    top: 104.68px;
-}
-
-#genero {
-    top: 141.90px;
-}
-
-#formato {
-    top: 179.13px;
-}
-
-#estreno {
-    top: 216.36px;
-}
-
-#puntaje {
-    top: 253.58px;
-}
-
-.image-container {
-    width: 148.91px;
-    height: 148.91px;
-    position: absolute;
-    left: 74.45px;
-    top: 184.92px;
-}
-
-.image-inner {
-    width: 124.09px;
-    height: 124.09px;
-    position: relative;
-    left: 12.41px;
-    top: 12.41px;
-}
-
-.white-border, .black-border, .white-line {
-    position: absolute;
-}
-
-.white-border {
-    width: 124.09px;
-    height: 124.09px;
-    background: white;
-    border: 3.31px solid white;
-}
-
-.black-border {
-    width: 74.45px;
-    height: 74.45px;
-    left: 24.82px;
-    top: 24.82px;
-    background: black;
-    border: 3.31px solid black;
-}
-
-.white-line {
-    width: 62.04px;
-    height: 0;
-    left: 62.04px;
-    top: 124.09px;
-    border: 3.31px solid white;
-}
-
-.button {
-    width: 275.48px;
-    height: 33.09px;
-    position: absolute;
-    left: 317px;
+.tarjeta {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    background-color: var(--blanco);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.cuadro1 {
+    background-color: rgba(5, 5, 5, 0.9);
+    color: var(--blanco);
+    padding: 0.5rem;
+    flex: 1;
+    display: flex;
     align-items: center;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 600;
+    justify-content: center;
 }
 
-.buy-tickets {
-    top: 368px;
-    background: #D00000;
+.cuadro1 img {
+    max-width: 100%;
+    border-radius: 1rem 0 0 1rem;
 }
 
-.synopsis {
-    top: 313.05px;
-    width: 275px;
-    height: 33px;
-    background: white;
-    color: black;
+.cuadro2 {
+    background-color: rgba(128, 128, 128, 0.8);
+    color: var(--blanco);
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0 1rem 1rem 0;
 }
 
+.cuadro2 ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cuadro2 ul li {
+    margin-bottom: 0.5rem;
+}
+
+.boton {
+    display: flex;
+    background-color: var(--blanco);
+    color: var(--oscuro);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: 400;
+    border-radius: 0.5rem;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.boton2 {
+    display: flex;
+    background-color: var(--primario);
+    color: var(--blanco);
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: 400;
+    border-radius: 0.5rem;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+}
+
+
+.boton, .boton2 {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: 400;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin: 0.5rem 0;
+    width: 90%;
+}
+
+footer {
+    background-color: var(--primario);
+    padding: 1rem;
+    margin-top: 2rem;
+}
