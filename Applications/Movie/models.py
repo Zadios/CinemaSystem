@@ -43,7 +43,7 @@ class Film(models.Model):
     formats = models.ManyToManyField(Format, verbose_name='Formato', related_name='films')
     release_date = models.DateField('Fecha de Lanzamiento', null=True, blank=True)
     age_restriction = models.CharField('Restricción de edad', max_length=4, choices=AGE_RESTRICTION_CHOICES)
-    upcoming_releases = models.BooleanField('Próximos Lanzamientos',default=False)
+    upcoming_releases = models.BooleanField('Próximos Lanzamientos', default=False)
 
     def __str__(self):
         return f"{self.id} - {self.name}"

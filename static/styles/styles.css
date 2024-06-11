@@ -1,8 +1,10 @@
 :root {
-    --blanco: #ffffff;
+    --blanco:#ffffff;
     --oscuro: #212121;
-    --primario: #D00000;
-    --gris: #757575;
+    --primario:#D00000;
+    --gris:#4E4E4E;
+    /*para botones*/
+    --grisoscuro:#323741;
 }
 
 html {
@@ -10,57 +12,83 @@ html {
 }
 
 body {
-    font-size: 16px; /* 1rem = 10px */
+    font-size: 16px; /* 1rem = 10px*/
     font-family: "Inter", sans-serif;
 }
 
-h1 {
+/*Letra*/
+h1{
     font-size: 2.5rem;
     color: var(--blanco);
-    display: block;
     background-color: var(--primario);
-    padding: 2rem;
+    padding: 2rem; 
 }
 
-h2 {
+h2{
     font-size: 2.2rem;
     color: var(--blanco);
     margin-top: 0.5rem;
 }
-
-h3 {
+h3{
     font-size: 2.2rem;
 }
-
-h4 {
+h4{
     font-size: 1.2rem;
 }
 
-.cartelera {
-    margin-top: auto;
-    margin-right: 17.44%;
-    margin-bottom: auto;
-    margin-left: 17.44%;
+/*Globales*/
+.menu {
+    background-color: var(--primario);
 }
-
-.centrar {
+.centrar{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+.flex{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6rem;
+    margin-bottom: 4rem;
+}
+.cartelera{
+    margin-top: auto;
+    margin-right: 19.63%;
+    margin-bottom: auto;
+    margin-left: 19.63%;
+}
 
-.contenedor {
+.contenedornav {
     display: grid;
     grid-template-columns: 1fr 4fr;
     align-items: center;
     width: 100%;
 }
-
-.nav-bg {
-    background-color: var(--primario);
+.cuadricula{
+    display: grid;
+    grid-template-columns: repeat(2,1fr 1fr);
+}
+.contenedor {
+    display: flex;
+    flex-direction: column;
+}
+.espaciar{
+    margin-top: 2.7rem;
+    margin-bottom: 2.5rem;
+}
+.boton{
+    display: flex;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
 }
 
+/*Modificaciones*/
 .navegacion-principal a {
     color: var(--blanco);
     text-decoration: none;
@@ -68,46 +96,37 @@ h4 {
     font-weight: 600;
     padding: 1rem;
 }
-
 .navegacion-principal a:hover {
-    background-color: rgba(255, 128, 114, 0.7);
+    background-color: rgb(255,128,114,.7);
     color: var(--blanco);
 }
 
 .img-izq {
-    width: 16.5rem;
-    justify-self: start;
     display: flex;
+    justify-self: start; 
+    width: 16.5rem; 
 }
 
 .img-der {
     display: flex;
-    justify-self: end;
+    justify-self: end; 
 }
 
-.img-der2 {
+.img-izq2{
     display: flex;
-    justify-self: flex-start;
+    justify-self: flex-start; 
 }
 
-.menu {
-    background-color: var(--primario);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.banner {
+.banner{
     background-color: var(--primario);
     max-width: 125rem;
     height: 42.5rem;
-    margin-top: 3rem;
-    border-radius: 1rem;
+    margin-top: 6rem;
+    border-radius: 1rem; 
     position: relative;
 }
 
-.ubicacion {
+.ubicacion{
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -120,97 +139,85 @@ h4 {
     max-height: 100%;
 }
 
-.cuadricula {
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem; /* Espacio entre las tarjetas */
-}
-
-.tarjeta {
-    display: flex;
-    flex-direction: row;
-    background-color: var(--blanco);
-    border-radius: 1rem;
-    overflow: hidden;
-}
-
 .cuadro1 {
-    background-color: rgba(5, 5, 5, 0.9);
+    background-color: rgba(5, 5, 5,0.9);
     color: var(--blanco);
+    height: 39rem;
     padding: 0.5rem;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cuadro1 img {
-    max-width: 100%;
-    border-radius: 1rem 0 0 1rem;
+    margin-left: 0.8rem;
+    margin-bottom: 1.5rem;
+    border-radius: 1rem 0rem 0rem 1rem;
 }
 
 .cuadro2 {
-    background-color: rgba(128, 128, 128, 0.8);
+    background-color: var(--gris);
     color: var(--blanco);
-    padding: 1rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 0 1rem 1rem 0;
+    padding: 1.5rem;
+    margin-right: 0.8rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0rem 1rem 1rem 0rem;
 }
 
-.cuadro2 ul {
-    list-style: none;
-    padding: 0;
-}
 
-.cuadro2 ul li {
-    margin-bottom: 0.5rem;
-}
-
-.boton {
-    display: flex;
+.boton1{
     background-color: var(--blanco);
-    color: var(--oscuro);
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    font-weight: 400;
-    border-radius: 0.5rem;
-    text-align: center;
-    width: 100%;
-    justify-content: center;
+    color: var(--oscuro);  
 }
-
-.boton2 {
-    display: flex;
+.boton2{
     background-color: var(--primario);
     color: var(--blanco);
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    font-weight: 400;
-    border-radius: 0.5rem;
-    text-align: center;
-    width: 100%;
-    justify-content: center;
+    max-width: 92.5%;
 }
-
-
-.boton, .boton2 {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    font-weight: 400;
-    border-radius: 0.5rem;
-    text-align: center;
-    margin: 0.5rem 0;
-    width: 90%;
+.boton3{
+    background-color: var(--grisoscuro);
+    color: var(--blanco);
+    width: 20rem;
+    height: 5.6rem;
 }
-
-footer {
+footer{
     background-color: var(--primario);
     padding: 1rem;
     margin-top: 2rem;
+    width: 100%; 
+    text-align: center;
 }
+
+/*Sinopsis*/
+/* Estilos para el modal */
+  .modal {
+    display: none; /* Ocultar por defecto */
+    position: fixed; /* Posición fija */
+    z-index: 1; /* Encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7); /* Fondo semi-transparente */
+  }
+
+  /* Estilo para el contenido del modal */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  /* Estilo para el botón de cerrar */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  
