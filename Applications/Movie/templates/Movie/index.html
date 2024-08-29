@@ -1,0 +1,94 @@
+{% extends 'CinemaSystemApp/base.html' %}
+{% load static %}
+
+{% block title %}Cartelera{% endblock %}
+
+{% block content %}
+<main class="cartelera">
+    <section class="banner">
+        <div class="ubicacion">
+            <img src="{% static 'img/banner.svg' %}" alt="banner_img">
+            <h2>Banner</h2>
+        </div>
+    </section>
+
+    <section class="flex">
+        <h3 class="centrar">Cartelera</h3>
+        <select class="boton boton3" aria-label="Default select example">
+            <option selected>Seleccione Sala</option>
+            <option value="1">Villa Carlos Paz</option>
+            <option value="2">Córdoba</option>
+            <option value="3">San Antonio</option>
+        </select>
+    </section>
+
+    <section class="cuadricula">
+        {% for film in films %}
+        {% if not film.upcoming_releases %}
+        <div class="cuadro1 centrar">
+            <img src="{{ film.image.url }}" alt="pelicula">
+        </div>
+        <div class="cuadro2 contenedor">
+            <div>
+                <h3>{{ film.name }}</h3>
+            </div>
+            <div class="espaciar">
+                <h4>Duración: {{ film.duration }} min</h4>
+                <h4>Clasificación de edad: {{ film.age_restriction }}</h4>
+                <h4>Género: {{ film.genre }}</h4>
+                <h4>Subénero: {{ film.subgenre }}</h4>
+                <h4>Formatos: {% for format in film.formats.all %}{{ format.name }} {% endfor %}</h4>
+            </div>
+            <div> 
+                <button type="button" class="boton boton1 centrar VerSinopsis" data-synopsis="{{ film.synopsis }}">Ver Sinopsis</button>                
+                <a class="boton boton2 centrar" href="/comprar.html">Comprar entrada</a>
+            </div>
+        </div>
+        <div class="modal sinopsis-modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h3>{{ film.name }}</h3>
+              <p>{{ film.synopsis }}</p>
+            </div>
+        </div>
+        {% endif %}      
+        {% endfor %}
+    </section>
+
+    <section class="flex">
+        <h3 class="centrar">Próximos Estrenos</h3>
+    </section>
+
+    <section class="cuadricula">
+        {% for film in films %}
+        {% if film.upcoming_releases %}
+        <div class="cuadro1 centrar">
+            <img src="{{ film.image.url }}" alt="pelicula">
+        </div>
+        <div class="cuadro2 contenedor">
+            <div>
+                <h3>{{ film.name }}</h3>
+            </div>
+            <div class="espaciar">
+                <h4>Duración: {{ film.duration }} min</h4>
+                <h4>Clasificación de edad: {{ film.age_restriction }}</h4>
+                <h4>Género: {{ film.genre }}</h4>
+                <h4>Subénero: {{ film.subgenre }}</h4>
+                <h4>Formatos: {% for format in film.formats.all %}{{ format.name }} {% endfor %}</h4>
+            </div>
+            <div> 
+                <button type="button" class="boton boton1 centrar VerSinopsis" data-synopsis="{{ film.synopsis }}">Ver Sinopsis</button>                
+            </div>
+        </div>
+        <div class="modal sinopsis-modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h3>{{ film.name }}</h3>
+              <p>{{ film.synopsis }}</p>
+            </div>
+        </div>
+        {% endif %}      
+        {% endfor %}
+    </section>
+{% endblock %}
+ 
