@@ -139,14 +139,49 @@ h4{
     max-height: 100%;
 }
 
+.tarjeta {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--blanco);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
 .cuadro1 {
-    background-color: rgba(5, 5, 5,0.9);
+    background-color: rgba(5, 5, 5, 0.9);
     color: var(--blanco);
-    height: 39rem;
     padding: 0.5rem;
-    margin-left: 0.8rem;
-    margin-bottom: 1.5rem;
-    border-radius: 1rem 0rem 0rem 1rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cuadro1 img {
+    max-width: 100%;
+    border-radius: 1rem 0 0 1rem;
+}
+
+/*
+.cuadro2 {
+    background-color: rgba(128, 128, 128, 0.8);
+    color: var(--blanco);
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0 1rem 1rem 0;
+}
+*/
+
+.cuadro2 ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cuadro2 ul li {
+    margin-bottom: 0.5rem;
 }
 
 .cuadro2 {
