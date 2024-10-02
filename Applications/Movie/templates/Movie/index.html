@@ -26,7 +26,7 @@
         {% for film in films %}
         {% if not film.upcoming_releases %}
         <div class="cuadro1 centrar">
-            <img src="{{ film.image.url }}" alt="pelicula">
+            <img src="{{ film.image }}" alt="pelicula">
         </div>
         <div class="cuadro2 contenedor">
             <div>
@@ -34,10 +34,9 @@
             </div>
             <div class="espaciar">
                 <h4>Duración: {{ film.duration }} min</h4>
-                <h4>Clasificación de edad: {{ film.age_restriction }}</h4>
-                <h4>Género: {{ film.genre }}</h4>
-                <h4>Subénero: {{ film.subgenre }}</h4>
-                <h4>Formatos: {% for format in film.formats.all %}{{ format.name }} {% endfor %}</h4>
+                <h4>Clasificación de edad: {{ film.age_restriction.number }}</h4>
+                <h4>Géneros: {% for genre in film.genres.all %}{{ genre.name }}{% endfor %}</h4>
+                <h4>Formatos: {{ film.format.name }}</h4>
             </div>
             <div> 
                 <button type="button" class="boton boton1 centrar VerSinopsis" data-synopsis="{{ film.synopsis }}">Ver Sinopsis</button>                

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Applications.CinemaSystemApp',
     'Applications.Movie',
     'Applications.Register',
+    'Applications.Showtime',
 ]
 
 MIDDLEWARE = [

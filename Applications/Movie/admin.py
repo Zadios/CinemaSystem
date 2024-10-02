@@ -30,3 +30,4 @@ class FilmAdmin(admin.ModelAdmin):
     list_display = ('id_film', 'name', 'release_date', 'language', 'upcoming_releases')
     search_fields = ('name', 'release_date')
     list_filter = ('release_date', 'upcoming_releases', 'language')
+
