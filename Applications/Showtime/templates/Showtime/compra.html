@@ -1,0 +1,40 @@
+<!-- templates/showtime/listar_compra.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de la Función</title>
+</head>
+<body>
+    <h1>{{ show.film.name }}</h1>
+    <p><strong>Fecha:</strong> {{ show.show_date }}</p>
+    <p><strong>Hora:</strong> {{ show.show_time }}</p>
+    <h2>Sala: {{ movie_theater.name }}</h2>
+    <p><strong>Capacidad:</strong> {{ movie_theater.capacity }}</p>
+
+    <h2>Precios</h2>
+    <ul>
+        {% for price in prices %}
+            <li>{{ price.name }} - ${{ price.amount }} ({{ price.ticket_quantity }} entradas)</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Sinopsis</h2>
+    <p>{{ film.synopsis }}</p>
+
+    <h2>Detalles Adicionales</h2>
+    <p><strong>Formato:</strong> {{ film.format.name }}</p>
+    <p><strong>Duración:</strong> {{ film.duration }} minutos</p>
+    <p><strong>Restricción de Edad:</strong> {{ film.age_restriction.name }}</p>
+
+
+    <h1>{{ show.film.name }} - {{ show.show_date }} {{ show.show_time }}</h1>
+<p>Teatro: {{ show.movie_theater.name }}</p>
+<h2>Entradas compradas:</h2>
+<ul>
+    {% for ticket in tickets %}
+        <li>Ticket: {{ ticket.ticket_code }} - Cantidad: {{ ticket.ticket_quantity }} - Precio: {{ ticket.price.amount }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

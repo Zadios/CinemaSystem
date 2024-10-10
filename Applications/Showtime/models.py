@@ -35,7 +35,7 @@ class Show(models.Model):
         ordering = ['show_date', 'show_time']  # Ordena por fecha y hora
 
     def __str__(self):
-        return f"{self.film.title} - {self.show_date} {self.show_time}"
+        return f"{self.film.name} - {self.show_date} {self.show_time}"
 
 class Ticket(models.Model):
     ticket_code = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)  # Código único del ticket

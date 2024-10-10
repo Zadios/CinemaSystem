@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('Applications.CinemaSystemApp.urls')),
     path('', include('Applications.Movie.urls')),
     path('Register/', include('Applications.Register.urls')),
+    path('Compra/', include('Applications.Showtime.urls')),
 ]
 
 if settings.DEBUG:

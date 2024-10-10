@@ -16,7 +16,7 @@ class PriceAdmin(admin.ModelAdmin):
 @admin.register(Show)
 class ShowAdmin(admin.ModelAdmin):
     list_display = ('show_code', 'film', 'movie_theater', 'show_date', 'show_time')
-    search_fields = ('film__title',)  # Asumiendo que Film tiene un campo title
+    search_fields = ('name',)  # Asumiendo que Film tiene un campo title
     list_filter = ('show_date', 'movie_theater')
 
 @admin.register(Ticket)

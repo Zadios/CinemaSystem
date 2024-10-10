@@ -53,29 +53,8 @@ class Film(models.Model):
     language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
     age_restriction = models.ForeignKey('Movie.Age_Restriction', on_delete=models.CASCADE, null=True)
     genres = models.ManyToManyField('Movie.Genre')
-    format = models.ForeignKey('Movie.Format', on_delete=models.CASCADE, null=True)
+    format = models.ForeignKey(Format, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.id_film} - {self.name}"
     
-
-'''GENRE_CHOICES = [
-    ('Acción', 'Acción'),
-    ('Aventura', 'Aventura'),
-    ('Ciencia Ficción', 'Ciencia Ficción'),
-    ('No-Ficción', 'No-Ficción'),
-    ('Drama', 'Drama'),
-    ('Fantasía', 'Fantasía'),
-    ('Musical', 'Musical'),
-    ('Suspense', 'Suspense'),
-    ('Terror', 'Terror'),
-    ('Comedia', 'Comedia'),
-
-]
-
-    AGE_RESTRICTION_CHOICES = [
-        ('ATP', 'ATP'),
-        ('13+', 'PM13'),
-        ('16+', 'PM16'),
-        ('18+', 'PM18'),
-    ]'''
