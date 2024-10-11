@@ -8,6 +8,9 @@ class Movie_Theater(models.Model):
     capacity = models.PositiveIntegerField('Capacidad', null=True)
     formats = models.ManyToManyField(Format)
 
+    def __str__(self):
+        return self.name
+
 class Price(models.Model):
     id_price = models.AutoField(primary_key=True)
     name = models.CharField('Nombre de la Promoción', max_length=100)

@@ -56,5 +56,5 @@ class Film(models.Model):
     format = models.ForeignKey(Format, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f"{self.id_film} - {self.name}"
+        return f"{self.name}"
     
