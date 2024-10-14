@@ -21,6 +21,7 @@ def listar_compra(request, show_id):
 
     return render(request, 'Showtime/compra.html', context)
 
+
 def procesar_compra(request, show_id, cantidad_entradas, price_id):
     # Obtener los objetos show y price
     show = Show.objects.get(id=show_id)

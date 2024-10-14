@@ -1,40 +1,75 @@
-<!-- templates/showtime/listar_compra.html -->
+<!-- templates/showtime/compra.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Detalles de la Función</title>
+    <title>Compra de Entradas</title>
+    <style>
+        /* Añade estilos simples aquí para mejorar la apariencia */
+        body { font-family: Arial, sans-serif; }
+        .promocion { margin-bottom: 10px; }
+    </style>
 </head>
 <body>
-    <h1>{{ show.film.name }}</h1>
-    <p><strong>Fecha:</strong> {{ show.show_date }}</p>
-    <p><strong>Hora:</strong> {{ show.show_time }}</p>
-    <h2>Sala: {{ movie_theater.name }}</h2>
-    <p><strong>Capacidad:</strong> {{ movie_theater.capacity }}</p>
+    <h1>Compra de Entradas: {{ film.name }}</h1>
+    <h2>Funciones en {{ movie_theater.name }}</h2>
+    <p><strong>Fecha:</strong> {{ show.show_date }} <strong>Hora:</strong> {{ show.show_time }}</p>
 
-    <h2>Precios</h2>
-    <ul>
+    <h2>Promociones</h2>
+    <div id="promociones">
         {% for price in prices %}
-            <li>{{ price.name }} - ${{ price.amount }} ({{ price.ticket_quantity }} entradas)</li>
+            <div class="promocion">
+                <span>{{ price.name }} - ${{ price.amount }} ({{ price.ticket_quantity }} entradas)</span>
+                <button onclick="agregarPromo({{ price.id_price }}, '{{ price.name }}', {{ price.amount }}, {{ price.ticket_quantity }})">Agregar</button>
+                <button onclick="quitarPromo({{ price.id_price }})">Quitar</button>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 
-    <h2>Sinopsis</h2>
-    <p>{{ film.synopsis }}</p>
+    <h2>Resumen de Compras</h2>
+    <ul id="resumen"></ul>
+    <p id="total">Total: $0</p>
+    <button id="pagar" onclick="pagar()">Pagar</button>
 
-    <h2>Detalles Adicionales</h2>
-    <p><strong>Formato:</strong> {{ film.format.name }}</p>
-    <p><strong>Duración:</strong> {{ film.duration }} minutos</p>
-    <p><strong>Restricción de Edad:</strong> {{ film.age_restriction.name }}</p>
+    <script>
+        const compras = {};
+        let total = 0;
 
+        function agregarPromo(id, nombre, precio, cantidad) {
+            if (!compras[id]) {
+                compras[id] = { nombre, precio, cantidad: 0 };
+            }
+            compras[id].cantidad++;
+            total += precio;
+            actualizarResumen();
+        }
 
-    <h1>{{ show.film.name }} - {{ show.show_date }} {{ show.show_time }}</h1>
-<p>Teatro: {{ show.movie_theater.name }}</p>
-<h2>Entradas compradas:</h2>
-<ul>
-    {% for ticket in tickets %}
-        <li>Ticket: {{ ticket.ticket_code }} - Cantidad: {{ ticket.ticket_quantity }} - Precio: {{ ticket.price.amount }}</li>
-    {% endfor %}
-</ul>
+        function quitarPromo(id) {
+            if (compras[id] && compras[id].cantidad > 0) {
+                compras[id].cantidad--;
+                total -= compras[id].precio;
+                actualizarResumen();
+            }
+        }
+
+        function actualizarResumen() {
+            const resumen = document.getElementById('resumen');
+            resumen.innerHTML = ''; // Limpiar el resumen
+            for (const id in compras) {
+                if (compras[id].cantidad > 0) {
+                    const li = document.createElement('li');
+                    li.textContent = `${compras[id].nombre}: ${compras[id].cantidad} entradas - $${compras[id].precio * compras[id].cantidad}`;
+                    resumen.appendChild(li);
+                }
+            }
+            document.getElementById('total').textContent = `Total: $${total}`;
+        }
+
+        function pagar() {
+            // Aquí puedes agregar la lógica para el pago y la creación del ticket
+            alert('Compra realizada. Se generará un ticket.');
+            // Aquí podrías hacer un POST a tu vista `procesar_compra` para procesar el pago.
+        }
+    </script>
 </body>
 </html>

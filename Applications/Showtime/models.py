@@ -1,6 +1,7 @@
 from django.db import models
 from Applications.Movie.models import Format, Film
-import uuid
+from .utils import generate_ticket_code
+
 
 class Movie_Theater(models.Model):
     id_movie_theater = models.AutoField(primary_key=True)
@@ -41,10 +42,10 @@ class Show(models.Model):
         return f"{self.film.name} - {self.show_date} {self.show_time}"
 
 class Ticket(models.Model):
-    ticket_code = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)  # Código único del ticket
-    show_code = models.ForeignKey(Show, on_delete=models.CASCADE)  # Relación con Show
-    price = models.ForeignKey(Price, on_delete=models.CASCADE, null=True)  # Relación con Price
-    ticket_quantity = models.PositiveIntegerField('Cantidad de entradas')  # Cantidad de entradas compradas
+    ticket_code = models.CharField(default=generate_ticket_code, max_length=8, primary_key=True, editable=False)
+    show_code = models.ForeignKey(Show, on_delete=models.CASCADE)
+    price = models.ForeignKey(Price, on_delete=models.CASCADE, null=True)
+    ticket_quantity = models.PositiveIntegerField('Cantidad de entradas')
 
     def __str__(self):
         return f"Ticket {self.ticket_code} - {self.ticket_quantity} entradas para {self.show_code}"
