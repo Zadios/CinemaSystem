@@ -54,10 +54,10 @@ class Film(models.Model):
     release_date = models.DateField('Fecha de Lanzamiento', null=True, blank=True)
     upcoming_releases = models.BooleanField('Próximos Lanzamientos', default=False)
     trailer_link = models.CharField('Enlace tráiler de YouTube', max_length=255, null=True)
-    language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
+    language = models.ManyToManyField(Language)
     age_restriction = models.ForeignKey('Movie.Age_Restriction', on_delete=models.CASCADE, null=True)
     genres = models.ManyToManyField('Movie.Genre')
-    format = models.ForeignKey(Format, on_delete=models.CASCADE, null=True)
+    format = models.ManyToManyField(Format)
 
     def __str__(self):
         return f"{self.name}"
