@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Movie_Theater, Price, Show, Ticket, Format, Film
+from django.core.exceptions import ValidationError
+from .models import Movie_Theater, Price, Show, Ticket, Format, Language, Film
 
 @admin.register(Movie_Theater)
 class MovieTheaterAdmin(admin.ModelAdmin):
@@ -20,17 +21,21 @@ class PriceAdmin(admin.ModelAdmin):
 
 @admin.register(Show)
 class ShowAdmin(admin.ModelAdmin):
-    list_display = ('show_code', 'film', 'movie_theater', 'show_date', 'show_time','get_film_format', 'get_film_language')
+    list_display = ('show_code', 'film', 'movie_theater', 'show_date', 'show_time', 'format', 'language')
     search_fields = ('name',)
     list_filter = ('show_date', 'movie_theater')
 
-    def get_film_format(self, obj):
-        return obj.film.format if obj.film else '-'
-    get_film_format.short_description = 'Formato'
+    # Sobrescribimos el método save para agregar validaciones personalizadas
+    def save_model(self, request, obj, form, change):
+        # Verificar que el formato pertenece a los formatos de la película
+        if obj.format not in obj.film.format.all():
+            raise ValidationError(f"El formato {obj.format} no está disponible para la película {obj.film.name}.")
 
-    def  get_film_language(self, obj):
-        return obj.film.language if obj.film else '-'
-    get_film_language.short_description = 'Idioma'
+        # Verificar que el lenguaje pertenece a los lenguajes de la película
+        if obj.language not in obj.film.language.all():
+            raise ValidationError(f"El lenguaje {obj.language} no está disponible para la película {obj.film.name}.")
+        
+        super().save_model(request, obj, form, change)
 
 @admin.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):

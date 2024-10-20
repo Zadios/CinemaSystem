@@ -1,5 +1,5 @@
 from django.db import models
-from Applications.Movie.models import Format, Film
+from Applications.Movie.models import Format, Film, Language
 from .utils import generate_ticket_code
 
 
@@ -33,6 +33,8 @@ class Show(models.Model):
     show_date = models.DateField()
     show_time = models.TimeField()
     prices = models.ManyToManyField(Price)
+    format = models.ForeignKey(Format, on_delete=models.CASCADE, null=True)  # Añadimos formato
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)  # Añadimos lenguaje
 
     class Meta:
         unique_together = ('film', 'show_date', 'show_time')  # Asegura que no haya dos funciones iguales
@@ -40,6 +42,7 @@ class Show(models.Model):
 
     def __str__(self):
         return f"{self.film.name} - {self.show_date} {self.show_time}"
+
 
 class Ticket(models.Model):
     ticket_code = models.CharField(default=generate_ticket_code, max_length=8, primary_key=True, editable=False)
