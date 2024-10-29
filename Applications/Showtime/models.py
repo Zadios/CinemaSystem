@@ -1,5 +1,6 @@
 from django.db import models
 from Applications.Movie.models import Format, Film, Language
+from django.core.exceptions import ValidationError
 from .utils import generate_ticket_code
 
 
@@ -42,6 +43,17 @@ class Show(models.Model):
 
     def __str__(self):
         return f"{self.film.name} - {self.show_date} {self.show_time}"
+    
+    def clean(self):
+        super().clean()  # Llama a la implementación original de clean()
+        
+        # Validación del formato
+        if self.film and self.film.format.filter(id_format=self.format.id_format).count() == 0:
+            raise ValidationError(f"El formato {self.format} no está disponible para la película {self.film.name}.")
+        
+        # Validación del lenguaje
+        if self.film and self.film.language.filter(id_language=self.language.id_language).count() == 0:
+            raise ValidationError(f"El lenguaje {self.language} no está disponible para la película {self.film.name}.")
 
 
 class Ticket(models.Model):
