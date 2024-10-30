@@ -1,0 +1,81 @@
+/* Centrar la ventana emergente */
+.modal-dialog {
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+    top: 30%;
+    transform: translateY(-50%);
+}
+
+.modal-content {
+    width: 100%; /* Ajusta a 100% en pantallas pequeñas */
+    max-width: 800px;
+    height: auto; /* Ajuste automático de la altura */
+    padding: 20px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+}
+
+/* Botón "Comprar Entradas" */
+.btn-danger {
+    background: var(--Gradient_01, linear-gradient(180deg, #E5383B 0%, #BA181B 34%, #A4161A 67%, #660708 100%));
+    color: #FFF;
+    font-family: Poppins, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    display: block;
+    width: 100%;
+}
+
+.btn-danger:hover {
+    background: var(--Gradient_01, linear-gradient(180deg, #BA181B 0%, #E5383B 100%));
+    color: #FFF;
+}
+
+/* Ajustes para el cuerpo del modal */
+.modal-body {
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* Configuración inicial en columna */
+    gap: 10px;
+}
+
+/* Título de la sinopsis */
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+}
+
+/* Ajustes en pantallas pequeñas */
+@media (max-width: 767px) {
+    .modal-dialog {
+        max-width: 90%; /* Ajuste de ancho para pantallas pequeñas */
+    }
+
+    .modal-content {
+        padding: 15px; /* Reduce el padding */
+        border-radius: 5px;
+    }
+
+    .modal-body {
+        flex-direction: column; /* Coloca el contenido en columna */
+        align-items: center;
+        text-align: center;
+    }
+
+    .modal-title {
+        font-size: 20px; /* Reduce el tamaño del título */
+    }
+
+    .btn-danger {
+        padding: 8px 0; /* Reduce el padding del botón */
+    }
+}

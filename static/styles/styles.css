@@ -1,258 +1,91 @@
-:root {
-    --blanco:#ffffff;
-    --oscuro: #212121;
-    --primario:#D00000;
-    --gris:#4E4E4E;
-    /*para botones*/
-    --grisoscuro:#323741;
-}
-
-html {
-    font-size: 62.5%;
-}
-
-body {
-    font-size: 16px; /* 1rem = 10px*/
-    font-family: "Inter", sans-serif;
-}
-
-/*Letra*/
-h1{
-    font-size: 2.5rem;
-    color: var(--blanco);
-    background-color: var(--primario);
-    padding: 2rem; 
-}
-
-h2{
-    font-size: 2.2rem;
-    color: var(--blanco);
-    margin-top: 0.5rem;
-}
-h3{
-    font-size: 2.2rem;
-}
-h4{
-    font-size: 1.2rem;
-}
-
-/*Globales*/
-.menu {
-    background-color: var(--primario);
-}
-.centrar{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.flex{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 6rem;
-    margin-bottom: 4rem;
-}
-.cartelera{
-    margin-top: auto;
-    margin-right: 19.63%;
-    margin-bottom: auto;
-    margin-left: 19.63%;
-}
-
-.contenedornav {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    align-items: center;
-    width: 100%;
-}
-.cuadricula{
-    display: grid;
-    grid-template-columns: repeat(2,1fr 1fr);
-}
-.contenedor {
-    display: flex;
-    flex-direction: column;
-}
-.espaciar{
-    margin-top: 2.7rem;
-    margin-bottom: 2.5rem;
-}
-.boton{
-    display: flex;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    font-weight: 500;
-    border-radius: 0.5rem;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 0.5rem;
-}
-
-/*Modificaciones*/
-.navegacion-principal a {
-    color: var(--blanco);
-    text-decoration: none;
-    font-size: 1.7rem;
-    font-weight: 600;
-    padding: 1rem;
-}
-.navegacion-principal a:hover {
-    background-color: rgb(255,128,114,.7);
-    color: var(--blanco);
-}
-
-.img-izq {
-    display: flex;
-    justify-self: start; 
-    width: 16.5rem; 
-}
-
-.img-der {
-    display: flex;
-    justify-self: end; 
-}
-
-.img-izq2{
-    display: flex;
-    justify-self: flex-start; 
-}
-
-.banner{
-    background-color: var(--primario);
-    max-width: 125rem;
-    height: 42.5rem;
-    margin-top: 6rem;
-    border-radius: 1rem; 
+/* Banner */
+.container_Banner {
+    max-width: 1166px;
+    max-height: 399.825px;
+    flex-shrink: 0;
+    border-radius: 9.298px;
+    overflow: hidden;
     position: relative;
 }
 
-.ubicacion{
-    position: absolute;
+
+/* Cartelera */
+.tarjetas-container {
     display: flex;
-    flex-direction: column;
+    max-width: 100%;
     align-items: center;
     justify-content: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100%;
-    max-height: 100%;
+    gap: 3px 32px;
+    flex-wrap: wrap;
 }
 
 .tarjeta {
+    background-color: #424242;
+    width: 571px;
     display: flex;
-    flex-direction: row;
-    background-color: var(--blanco);
-    border-radius: 1rem;
-    overflow: hidden;
+    margin-bottom: 32px;
+    height: 392px;
+    border-radius: 0px 7.386px 7.386px 0px;
+    flex-direction: row; /* Asegura el formato horizontal en pantallas grandes */
 }
 
-.cuadro1 {
-    background-color: rgba(5, 5, 5, 0.9);
-    color: var(--blanco);
-    padding: 0.5rem;
-    flex: 1;
+.tarjeta-img {
+    width: 274px;
+    height: 391px;
+    flex-shrink: 0;
+}
+
+.tarjeta-info {
+    width: 297px;
+    padding: 16px;
+    height: 391px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cuadro1 img {
-    max-width: 100%;
-    border-radius: 1rem 0 0 1rem;
-}
-
-/*
-.cuadro2 {
-    background-color: rgba(128, 128, 128, 0.8);
-    color: var(--blanco);
-    padding: 1rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 0 1rem 1rem 0;
-}
-*/
-
-.cuadro2 ul {
-    list-style: none;
-    padding: 0;
-}
-
-.cuadro2 ul li {
-    margin-bottom: 0.5rem;
-}
-
-.cuadro2 {
-    background-color: var(--gris);
-    color: var(--blanco);
-    padding: 1.5rem;
-    margin-right: 0.8rem;
-    margin-bottom: 1.5rem;
-    border-radius: 0rem 1rem 1rem 0rem;
+    flex-direction: column; /* Asegura que el contenido esté en columna */
+    justify-content: space-between; /* Espacio entre el título, la descripción y los botones */
 }
 
 
-.boton1{
-    background-color: var(--blanco);
-    color: var(--oscuro);  
-}
-.boton2{
-    background-color: var(--primario);
-    color: var(--blanco);
-    max-width: 92.5%;
-}
-.boton3{
-    background-color: var(--grisoscuro);
-    color: var(--blanco);
-    width: 20rem;
-    height: 5.6rem;
-}
-footer{
-    background-color: var(--primario);
-    padding: 1rem;
-    margin-top: 2rem;
-    width: 100%; 
+/* Botones */
+.btn-danger {
+    background: linear-gradient(180deg, #E5383B 0%, #BA181B 34%, #A4161A 67%, #660708 100%);
+    color: #FFF;
     text-align: center;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 600;
 }
 
-/*Sinopsis*/
-/* Estilos para el modal */
-  .modal {
-    display: none; /* Ocultar por defecto */
-    position: fixed; /* Posición fija */
-    z-index: 1; /* Encima de todo */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.7); /* Fondo semi-transparente */
-  }
+.btn-outline-dark {
+    background-color: #FFF;
+    color: #000;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 600;
+}
 
-  /* Estilo para el contenido del modal */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
+@media (max-width: 767px) {
+    .container_Banner {
+        max-width: 100%;
+        height: auto;
+    }
+    .carousel-inner img {
+        height: auto;
+    }
+    .tarjeta {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        width: 80%; /* Ocupa el 100% del ancho */
+        height: auto; /* Ajusta la altura automáticamente */
+    }
 
-  /* Estilo para el botón de cerrar */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+    .tarjeta-img {
+        width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+        height: auto; /* La altura se ajusta automáticamente para mantener la proporción */
+    }
 
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  
+    .tarjeta-info {
+        width: 100%; /* El contenido ocupa todo el ancho del contenedor */
+        height: auto; /* La altura se ajusta automáticamente */
+        padding: 16px; /* Mantiene el padding */
+    }
+}

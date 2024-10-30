@@ -1,24 +1,18 @@
-// JavaScript para manejar el popup de sinopsis
-document.addEventListener('DOMContentLoaded', function() {
-    var modal = document.querySelector('.sinopsis-modal');
-    var closeModal = document.querySelector('.sinopsis-modal .close');
-    var buttons = document.querySelectorAll('.VerSinopsis');
+// Función para mostrar la sinopsis en el modal
+const sinopsisModal = document.getElementById('sinopsisModal');
+sinopsisModal.addEventListener('show.bs.modal', (event) => {
+    // Obtener el botón que abrió el modal
+    const button = event.relatedTarget;
 
-    buttons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var synopsis = this.dataset.synopsis;
-            modal.querySelector('p').textContent = synopsis;
-            modal.style.display = 'block';
-        });
-    });
+    // Extraer la sinopsis y el título de la película del botón
+    const sinopsis = button.getAttribute('data-sinopsis');
+    const titulo = button.parentElement.querySelector('h5').textContent;
 
-    closeModal.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
+    // Actualizar el contenido del modal
+    const modalBody = sinopsisModal.querySelector('.modal-body');
+    modalBody.textContent = sinopsis;
 
-    window.addEventListener('click', function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    });
+    // Actualizar el título del modal
+    const modalTitle = sinopsisModal.querySelector('.modal-title');
+    modalTitle.textContent = titulo;
 });
