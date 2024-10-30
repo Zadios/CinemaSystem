@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.core.exceptions import ValidationError
-from .models import Movie_Theater, Price, Show, Ticket, Format, Language, Film
+from .models import Movie_Theater, Price, Show, Ticket, Format, Language, Film, Ticket_Price
 
 @admin.register(Movie_Theater)
 class MovieTheaterAdmin(admin.ModelAdmin):
@@ -39,7 +39,13 @@ class ShowAdmin(admin.ModelAdmin):
 
 @admin.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ('ticket_code', 'show_code', 'price', 'ticket_quantity')
+    list_display = ('ticket_code', 'show', 'total_tickets', 'total_price')
     search_fields = ('ticket_code',)
-    list_filter = ('show_code', 'price')
+    list_filter = ('show',)
+    ordering = ('ticket_code',)
+
+@admin.register(Ticket_Price)
+class TicketPriceAdmin(admin.ModelAdmin):
+    list_display = ('ticket', 'price', 'quantity')
+    search_fields = ('ticket__ticket_code', 'price__name')
 

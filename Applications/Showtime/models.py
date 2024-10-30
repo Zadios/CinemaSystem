@@ -45,7 +45,7 @@ class Show(models.Model):
         return f"{self.film.name} - {self.show_date} {self.show_time}"
     
     def clean(self):
-        super().clean()  # Llama a la implementación original de clean()
+        super().clean()
         
         # Validación del formato
         if self.film and self.film.format.filter(id_format=self.format.id_format).count() == 0:
@@ -57,10 +57,18 @@ class Show(models.Model):
 
 
 class Ticket(models.Model):
-    ticket_code = models.CharField(default=generate_ticket_code, max_length=8, primary_key=True, editable=False)
-    show_code = models.ForeignKey(Show, on_delete=models.CASCADE)
-    price = models.ForeignKey(Price, on_delete=models.CASCADE, null=True)
-    ticket_quantity = models.PositiveIntegerField('Cantidad de entradas')
+    ticket_code = models.CharField(max_length=20, unique=True)
+    show = models.ForeignKey('Show', on_delete=models.CASCADE)
+    total_tickets = models.PositiveIntegerField()
+    total_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"Ticket {self.ticket_code} - {self.ticket_quantity} entradas para {self.show_code}"
+        return f"Ticket {self.ticket_code} for {self.show}"
+
+class Ticket_Price(models.Model):
+    ticket = models.ForeignKey('Ticket', on_delete=models.CASCADE, related_name="purchased_prices")
+    price = models.ForeignKey('Price', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.quantity} x {self.price.name} for Ticket {self.ticket.ticket_code}"
