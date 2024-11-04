@@ -2,4 +2,5 @@
 db.sqlite3
 */migrations/
 /Entornos
-media
+media/covers/*
+!media/covers/.gitkeep
