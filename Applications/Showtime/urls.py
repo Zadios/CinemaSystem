@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-from .views import pelicula_list
-app_name = "movie_app"
+
+app_name = "showtime"
 urlpatterns = [
-    path('', pelicula_list, name='index'),
+    path('<int:film_id>/', views.comprar_entradas, name='comprar_entradas'),
 ]

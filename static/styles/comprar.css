@@ -1,0 +1,102 @@
+/*Modificacion en titulos*/
+h2{
+    font-family: Anton;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 96.34px;
+    text-align: center;
+}
+h5{
+    padding: 5px;
+    background-color: rgba(69, 69, 69, 1);
+}
+
+.day {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+
+/*largo de la imagen*/
+.image-container {
+    height: 90%;
+}
+/*largo de las categorias que voy agregando*/
+.text-container {
+    height: 10%;
+}
+
+/*color y tamaño de las categorias*/
+.background-p {
+    display: inline-block; /*el backgr se va a ajustar texto */
+    text-align: center;
+    background: rgba(103, 103, 103, 1);
+    height: 30px;
+    padding: 3px;
+    border-radius: 11.48px;
+}
+
+/*estilos de la columna gris*/
+.col-cont {
+    background-color: rgba(45, 45, 45, 1);
+    border-radius: 5px;
+    padding: 20px 0px 0px 0px;
+}
+
+/*estilos de seleccionar formato y seleccionar idioma*/
+.form-select {
+    background-color: rgba(50, 55, 65, 1);
+    color: rgba(176, 184, 204, 1);
+    margin-bottom: 10px;
+    max-width: 250px;
+    height: 50px;
+    padding: 15px 65px 15px 25px;
+    border-radius: 8px;
+}
+
+/*botones*/
+.btn-outline-light {
+    max-width: 100px; 
+    max-height: 60px;
+    gap: 0px;
+}
+
+.btn-red {
+    background: linear-gradient(180deg, #E5383B 0%, #BA181B 34%, #A4161A 67%, #660708 100%);
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 45px;
+    width: 100%; 
+    height: 70px;     
+    padding: 8px 28px;
+    border-radius: 8px;
+}
+
+/*contenedor boton*/
+.bt-box{
+    width: 100.23px;
+    height: 60.14px;
+    gap: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    opacity: 0px;
+}
+
+/*contenedor espacio de filtrado*/
+#schedule-container{
+    margin-top: 20px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/*estilos del trailer*/
+#video-container {
+    height: 600px; 
+    overflow: hidden; /* Para evitar el desbordamiento */
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
