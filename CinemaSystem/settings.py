@@ -143,3 +143,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Registro de usuarios
 AUTH_USER_MODEL = 'Register.CustomUser'
+
+# Horas y Minutos
+TIME_INPUT_FORMATS = ('%H:%M',)

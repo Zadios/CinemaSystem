@@ -61,7 +61,7 @@
                     data-bs-toggle="modal" 
                     data-bs-target="#sinopsisModal" 
                     data-sinopsis="{{ film.synopsis }}">Ver Sinopsis</button>
-            <a href="/comprar/comprar.html" class="btn btn-danger w-100">Comprar Entradas</a>
+            <a href="{% url 'showtime:comprar_entradas' film.id_film %}" class="btn btn-danger w-100">Comprar Entradas</a>
         </div>
     {% endif %}
     {% endfor %}
@@ -93,7 +93,7 @@
                         data-bs-toggle="modal" 
                         data-bs-target="#sinopsisModal" 
                         data-sinopsis="{{ film.synopsis }}">Ver Sinopsis</button>
-                <a href="/comprar/comprar.html" class="btn btn-danger w-100">Comprar Entradas</a>
+                <a href="{% url 'showtime:comprar_entradas' film.id_film %}" class="btn btn-danger w-100">Comprar Entradas</a>
             </div>
         {% endif %}
         {% endfor %}

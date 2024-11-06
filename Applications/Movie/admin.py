@@ -30,7 +30,7 @@ from .models import Film
 
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):
-    list_display = ('name', 'release_date', 'upcoming_releases', 'get_languages', 'get_formats')
+    list_display = ('name', 'id_film', 'release_date', 'upcoming_releases', 'get_languages', 'get_formats')
     search_fields = ('name',)
     list_filter = ('upcoming_releases', 'genres', 'age_restriction')
 

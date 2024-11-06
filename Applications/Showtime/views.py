@@ -1,41 +1,28 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
-from .models import Show, Price, Ticket
+from Applications.Movie.models import Film, Format, Language
+from .models import Show, Movie_Theater
 
-def listar_compra(request, show_id):
-    # Obtén el show correspondiente
-    show = get_object_or_404(Show, pk=show_id)
+def comprar_entradas(request, film_id):
+    film = get_object_or_404(Film, pk=film_id)
+    formats = film.format.all()  # Formatos disponibles para la película
+    languages = film.language.all()  # Idiomas disponibles para la película
+    shows = Show.objects.filter(film=film)
 
-    # Datos adicionales relacionados
-    film = show.film
-    movie_theater = show.movie_theater
-    prices = show.prices.all()
+    selected_format = request.GET.get('format')
+    selected_language = request.GET.get('language')
 
-    # Contexto para el template
+    # Filtrar los shows por formato e idioma, si están seleccionados
+    if selected_format:
+        shows = shows.filter(format_id=selected_format)
+    if selected_language:
+        shows = shows.filter(language_id=selected_language)
+
     context = {
-        'show': show,
         'film': film,
-        'movie_theater': movie_theater,
-        'prices': prices,
+        'formats': formats,
+        'languages': languages,
+        'shows': shows,
+        'selected_format': selected_format,
+        'selected_language': selected_language,
     }
-
-    return render(request, 'Showtime/compra.html', context)
-
-
-def procesar_compra(request, show_id, cantidad_entradas, price_id):
-    # Obtener los objetos show y price
-    show = Show.objects.get(id=show_id)
-    price = Price.objects.get(id=price_id)
-    
-    # Calcular el precio total
-    total_precio = cantidad_entradas * price.amount
-    
-    # Crear el ticket
-    ticket = Ticket.objects.create(
-        show_code=show,
-        price=price,
-        ticket_quantity=cantidad_entradas
-    )
-    
-    # Retornar respuesta o redirigir
-    return JsonResponse({'ticket_code': ticket.ticket_code, 'total_precio': total_precio})
+    return render(request, 'showtime/comprar_entradas.html', context)
