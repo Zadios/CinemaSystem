@@ -101,4 +101,22 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="sinopsisModal" tabindex="-1" aria-labelledby="sinopsisModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sinopsisModalLabel">Título de la Película</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí se insertará la sinopsis -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script src="{% static 'JS/sinopsis.js' %}"></script>
+{% endblock %}
 {% endblock %}
