@@ -45,12 +45,16 @@ header h1 {
     height: 20px;
 }
 
+main {
+    padding-bottom: 2rem; /* Espacio adicional antes del footer */
+}
+
 
 footer{
     background: linear-gradient(180deg, #E5383B 0%, #BA181B 34%, #A4161A 67%, #660708 100%);
     padding: 1rem;
     margin-top: 2rem;
-    margin-top: 100px; 
+    
 }
 
 .centrar{

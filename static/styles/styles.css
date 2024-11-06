@@ -8,49 +8,46 @@
     position: relative;
 }
 
-
 /* Cartelera */
 .tarjetas-container {
     display: flex;
-    max-width: 100%;
-    align-items: center;
-    justify-content: center;
-    gap: 3px 32px;
     flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
 }
 
 .tarjeta {
     background-color: #424242;
-    width: 571px;
     display: flex;
-    margin-bottom: 32px;
-    height: 392px;
-    border-radius: 0px 7.386px 7.386px 0px;
-    flex-direction: row; /* Asegura el formato horizontal en pantallas grandes */
+    width: calc(50% - 10px); /* Ocupa la mitad del ancho del contenedor, con espacio entre tarjetas */
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    transition: transform 0.2s ease-in-out;
+    align-items: flex-start;
 }
 
 .tarjeta-img {
-    width: 274px;
-    height: 391px;
-    flex-shrink: 0;
+    width: 50%; /* La imagen ocupa el 50% de la tarjeta */
+    height: 100%; /* Se ajusta al alto del contenedor */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
 }
 
 .tarjeta-info {
-    width: 297px;
     padding: 16px;
-    height: 391px;
+    width: 50%; /* El contenido ocupa el otro 50% */
+    color: #FFF;
     display: flex;
-    flex-direction: column; /* Asegura que el contenido esté en columna */
-    justify-content: space-between; /* Espacio entre el título, la descripción y los botones */
+    flex-direction: column;
+    gap: 8px;
+    justify-content: space-between;
 }
-
 
 /* Botones */
 .btn-danger {
     background: linear-gradient(180deg, #E5383B 0%, #BA181B 34%, #A4161A 67%, #660708 100%);
     color: #FFF;
-    text-align: center;
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     font-size: 16px;
     font-weight: 600;
 }
@@ -58,34 +55,57 @@
 .btn-outline-dark {
     background-color: #FFF;
     color: #000;
-    text-align: center;
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     font-size: 16px;
     font-weight: 600;
 }
-
-@media (max-width: 767px) {
-    .container_Banner {
-        max-width: 100%;
-        height: auto;
-    }
-    .carousel-inner img {
-        height: auto;
-    }
+/* Media query para pantallas entre 800px y 1100px */
+@media (min-width: 998px) and (max-width: 1199px) {
     .tarjeta {
-        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
-        width: 80%; /* Ocupa el 100% del ancho */
-        height: auto; /* Ajusta la altura automáticamente */
+        width: calc(33.33% - 20px); /* Cada tarjeta ocupa aproximadamente un tercio del contenedor */
+        flex-direction: column; /* Cambia a disposición vertical */
     }
 
     .tarjeta-img {
-        width: 100%; /* La imagen ocupa todo el ancho del contenedor */
-        height: auto; /* La altura se ajusta automáticamente para mantener la proporción */
+        width: 100%; /* Imagen ocupa todo el ancho de la tarjeta en este rango */
+        height: auto; /* Ajusta la altura automáticamente */
     }
 
     .tarjeta-info {
-        width: 100%; /* El contenido ocupa todo el ancho del contenedor */
-        height: auto; /* La altura se ajusta automáticamente */
-        padding: 16px; /* Mantiene el padding */
+        width: 100%; /* Información ocupa todo el ancho en este rango */
     }
 }
+/* Media query para pantallas entre 800px y 1100px */
+@media (min-width: 768px) and (max-width: 997px) {
+    .tarjeta {
+        width: calc(50% - 10px); /* Cada tarjeta ocupa aproximadamente un tercio del contenedor */
+        flex-direction: column; /* Cambia a disposición vertical */
+    }
+
+    .tarjeta-img {
+        width: 100%; /* Imagen ocupa todo el ancho de la tarjeta en este rango */
+        height: auto; /* Ajusta la altura automáticamente */
+    }
+
+    .tarjeta-info {
+        width: 100%; /* Información ocupa todo el ancho en este rango */
+    }
+}
+
+/* Media query para pantallas de 767px o menos */
+@media (max-width: 767px) {
+    .tarjeta {
+        width: 100%; /* Ocupa el ancho completo en pantallas pequeñas */
+        flex-direction: column; /* Cambia a disposición vertical */
+    }
+
+    .tarjeta-img {
+        width: 100%; /* Imagen ocupa todo el ancho en dispositivos móviles */
+        height: auto; /* Ajusta la altura automáticamente */
+    }
+
+    .tarjeta-info {
+        width: 100%; /* Información ocupa todo el ancho en dispositivos móviles */
+    }
+}
+
