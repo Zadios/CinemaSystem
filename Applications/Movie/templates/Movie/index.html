@@ -57,6 +57,12 @@
                         {{ format.name }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </p>
+                <p>
+                    Lenguajes: 
+                    {% for language in film.language.all %}
+                        {{ language.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
                 <p>Fecha de Estreno: {{ film.release_date|date:"d/m/Y" }}</p>
                 <button class="btn btn-outline-dark w-100 mb-2" 
                         data-bs-toggle="modal" 
@@ -87,6 +93,12 @@
                 <p>Formatos: 
                     {% for format in film.format.all %}
                         {{ format.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p>
+                    Lenguajes: 
+                    {% for language in film.language.all %}
+                        {{ language.name }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </p>
                 <p>Fecha de Estreno: {{ film.release_date|date:"d/m/Y" }}</p>
