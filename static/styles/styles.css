@@ -23,6 +23,7 @@
 }
 
 .tarjeta {
+    aspect-ratio: 54 / 40;
     background-color: #424242;
     display: flex;
     width: calc(50% - 10px); /* Ocupa la mitad del ancho del contenedor, con espacio entre tarjetas */
@@ -79,7 +80,7 @@
 
     .tarjeta-img {
         width: 100%; 
-        height: auto;
+        height: 100%;
     }
 
     .tarjeta-info {
@@ -100,7 +101,7 @@
 
     .tarjeta-img {
         width: 100%; 
-        height: auto; 
+        height: 100%; 
     }
 
     .tarjeta-info {
@@ -111,7 +112,7 @@
 /* Media query para pantallas de 767px o menos */
 @media (max-width: 767px) {
     .tarjeta {
-        width: 60%; 
+        width: 90%; 
         flex-direction: column; /* Cambia a disposición vertical */
         margin-left: auto;
         margin-right: auto;
