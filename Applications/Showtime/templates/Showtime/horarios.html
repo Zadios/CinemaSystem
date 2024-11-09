@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col-md-3 col-sm-3">
             <div class="image-container centrar">
-                <img src="{{ film.image.url }}" class="img-fluid" alt="Imagen portada">
+                <img src="{{ film.image.url }}" class="img-fluid img-poster" alt="Imagen portada">
             </div>
             <div class="text-container my-2">
                 {% for genre in film.genres.all %}
@@ -102,6 +102,23 @@
         <section class="d-grid gap-2 mb-3">
             <a class="btn btn-red text-white" href="#">Comprar Entrada</a>
         </section>
+    </div>
+</div>
+
+<!-- Sinopsis -->
+<div class="container">
+    <section>
+        <h3>Sinopsis</h3>
+        <p>{{ film.synopsis }}</p>
+    </section>
+</div>
+
+ <!-- Trailer de youtube -->
+ <div class="container">
+    <div class="row">
+        <div class="col">
+            <div id="video-container" class=" centrar embed-responsive embed-responsive-16by9" data-video-link="{{ film.trailer_link }}"></div>
+        </div>
     </div>
 </div>
 

@@ -23,7 +23,6 @@
 }
 
 .tarjeta {
-    aspect-ratio: 54 / 40;
     background-color: #424242;
     display: flex;
     width: calc(50% - 10px); /* Ocupa la mitad del ancho del contenedor, con espacio entre tarjetas */
@@ -35,6 +34,7 @@
 }
 
 .tarjeta-img {
+    aspect-ratio: 27 / 40;
     width: 50%; /* La imagen ocupa el 50% de la tarjeta */
     height: 100%; 
     object-fit: cover; /* Mantiene la proporción de la imagen */

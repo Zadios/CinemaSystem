@@ -77,3 +77,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Video de YouTube
+// Obtén el enlace completo del video desde el atributo de datos en el contenedor
+const videoContainer = document.getElementById('video-container');
+const videoLink = videoContainer.getAttribute('data-video-link');
+
+// Función para extraer el ID del video de un enlace de YouTube
+function extractYouTubeID(url) {
+    const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+}
+
+const videoId = extractYouTubeID(videoLink);
+
+// Crear el iframe solo si hay un ID de video válido
+if (videoId) {
+    const iframe = document.createElement('iframe');
+    iframe.className = 'embed-responsive-item';
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    iframe.frameBorder = '0';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope';
+    iframe.allowFullscreen = true;
+
+    videoContainer.appendChild(iframe);
+} else {
+    console.error('No se encontró un ID de video válido en el enlace proporcionado.');
+}
