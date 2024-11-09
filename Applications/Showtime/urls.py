@@ -4,5 +4,6 @@ from . import views
 
 app_name = "showtime"
 urlpatterns = [
-    path('<int:film_id>/', views.comprar_entradas, name='comprar_entradas'),
+    path('<int:film_id>/', views.horarios, name='horarios'),
+    path('comprar_entradas/<int:show_id>/', views.comprar_entradas, name='comprar_entradas'),
 ]

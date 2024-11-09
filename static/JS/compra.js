@@ -2,10 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cargar y verificar los horarios en window.horarios
     try {
         window.horarios = JSON.parse(document.getElementById("horarios-data").dataset.horarios);
-        console.log("Horarios cargados:", window.horarios);  // Verifica que los datos están presentes
     } catch (error) {
         console.error("Error al analizar los datos de horarios:", error);
-        window.horarios = {};  // Asignamos un objeto vacío en caso de error
     }
 
     // Selección de formato e idioma
@@ -35,7 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
             horarios.forEach(horario => {
                 const horarioButton = document.createElement("button");
                 horarioButton.className = "btn btn-outline-light me-2";
-                horarioButton.textContent = horario;
+                horarioButton.textContent = horario.time;
+
+                // Agregar el data-show-id con el id del show correspondiente
+                horarioButton.setAttribute("data-show-id", horario.show_id);
+
                 scheduleContainer.appendChild(horarioButton);
             });
         } else {
@@ -60,5 +62,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // Mostrar los horarios para la fecha seleccionada
             mostrarHorarios(fechaSeleccionada);
         });
+    });
+
+    // Función para manejar el clic en los botones de horarios
+    scheduleContainer.addEventListener("click", function(event) {
+        if (event.target && event.target.matches("button")) {
+            // Obtener el show_id desde el atributo data-show-id del botón
+            const showId = event.target.getAttribute("data-show-id");
+
+            // Mostrar el show_id en la consola
+            console.log("Show ID seleccionado:", showId);
+
+            // Aquí puedes guardar o procesar el showId, por ejemplo, almacenarlo en la sesión o en un campo oculto
+        }
     });
 });
