@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const dayButtons = document.querySelectorAll(".day-button");
     const scheduleContainer = document.getElementById("schedule-container");
 
-    // Función para limpiar y mostrar los horarios disponibles
+    // Función para mostrar los horarios disponibles
     function mostrarHorarios(fechaSeleccionada) {
         // Limpiar el contenedor de horarios
         scheduleContainer.innerHTML = "";
@@ -32,11 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (horarios.length > 0) {
             horarios.forEach(horario => {
                 const horarioButton = document.createElement("button");
-                horarioButton.className = "btn btn-outline-light me-2";
-                horarioButton.textContent = horario.time;
-
-                // Agregar el data-show-id con el id del show correspondiente
-                horarioButton.setAttribute("data-show-id", horario.show_id);
+                horarioButton.className = "btn btn-outline-light me-2 horario-button";
+                horarioButton.textContent = horario.show_time; // Mostrar la hora
+                horarioButton.setAttribute("data-show-id", horario.show_id); // Añadir el show_id como atributo
 
                 scheduleContainer.appendChild(horarioButton);
             });
@@ -49,31 +47,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Función para manejar el clic en los botones de día
+    // Manejador de evento para los botones de día
     dayButtons.forEach(button => {
         button.addEventListener("click", function() {
-            // Remover la clase 'active' de todos los botones de día
             dayButtons.forEach(btn => btn.classList.remove("active"));
-            // Agregar la clase 'active' al botón seleccionado
             button.classList.add("active");
-
-            // Obtener la fecha seleccionada del botón
             const fechaSeleccionada = button.getAttribute("data-day");
-            // Mostrar los horarios para la fecha seleccionada
             mostrarHorarios(fechaSeleccionada);
         });
     });
 
-    // Función para manejar el clic en los botones de horarios
+    let selectedShowId = null; // Variable para almacenar el último show_id seleccionado
+
+    // Manejador de evento para los botones de horarios
     scheduleContainer.addEventListener("click", function(event) {
-        if (event.target && event.target.matches("button")) {
-            // Obtener el show_id desde el atributo data-show-id del botón
-            const showId = event.target.getAttribute("data-show-id");
+        if (event.target && event.target.matches("button.horario-button")) {
+            selectedShowId = event.target.getAttribute("data-show-id");
+            console.log("Show ID seleccionado:", selectedShowId);
+        }
+    });
 
-            // Mostrar el show_id en la consola
-            console.log("Show ID seleccionado:", showId);
+    // Manejador de evento para el botón de "Comprar Entrada"
+    const comprarButton = document.querySelector(".btn.btn-red");
 
-            // Aquí puedes guardar o procesar el showId, por ejemplo, almacenarlo en la sesión o en un campo oculto
+    comprarButton.addEventListener("click", function(event) {
+        if (selectedShowId) { // Verifica que haya un show_id seleccionado
+            // Redirige a la URL usando el show_id almacenado
+            window.location.href = `/comprar_entradas/${selectedShowId}/`;
+        } else {
+            alert("Por favor, selecciona un horario antes de comprar una entrada.");
         }
     });
 });
@@ -94,14 +96,12 @@ const videoId = extractYouTubeID(videoLink);
 
 // Crear el iframe solo si hay un ID de video válido
 if (videoId) {
-    const iframe = document.createElement('iframe');
-    iframe.className = 'embed-responsive-item';
+    const iframe = document.createElement("iframe");
     iframe.src = `https://www.youtube.com/embed/${videoId}`;
-    iframe.frameBorder = '0';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope';
-    iframe.allowFullscreen = true;
-
+    iframe.classList.add("embed-responsive-item");
+    iframe.setAttribute("allowfullscreen", "");
     videoContainer.appendChild(iframe);
 } else {
-    console.error('No se encontró un ID de video válido en el enlace proporcionado.');
+    console.error("No se pudo obtener un ID de video válido de YouTube.");
 }
+

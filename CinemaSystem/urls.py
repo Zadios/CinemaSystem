@@ -24,7 +24,8 @@ urlpatterns = [
     path('', include('Applications.CinemaSystemApp.urls')),
     path('', include('Applications.Movie.urls')),
     path('register/', include('Applications.Register.urls')),
-    path('horarios/', include('Applications.Showtime.urls')),
+    path('horarios/', include('Applications.Showtime.urls', namespace='showtime_horarios')),
+    path('', include('Applications.Showtime.urls', namespace='showtime_comprar_entradas')),
 ]
 
 if settings.DEBUG:

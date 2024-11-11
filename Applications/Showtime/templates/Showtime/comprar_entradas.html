@@ -1,2 +1,7 @@
 {% extends 'CinemaSystemApp/base.html' %}
 {% load static %}
+
+{% block content %}
+{{ show.show_code }}
+{{ show.film.name }}
+{% endblock %}

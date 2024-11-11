@@ -9,14 +9,15 @@
 
 {% block content %}
 <div id="horarios-data" data-horarios='{
-    {% for date, horarios in horarios_por_fecha.items %}
+    {% for date, shows in horarios_por_fecha.items %}
         "{{ date }}": [
-            {% for hora in horarios %}
-                "{{ hora }}"{% if not forloop.last %}, {% endif %}
+            {% for show in shows %}
+                {"show_time": "{{ show.show_time }}", "show_id": "{{ show.show_code }}"}{% if not forloop.last %}, {% endif %}
             {% endfor %}
         ]{% if not forloop.last %}, {% endif %}
     {% endfor %}
 }'></div>
+
 
 
 
@@ -70,13 +71,14 @@
                     <h5>Días</h5>
                     <div class="row ms-3" id="day-buttons">
                         <!-- Botones de los días -->
-                        {% for show in shows %}
-                            <button type="button" 
-                                    class="btn btn-outline-light bt-box text-center day-button" 
-                                    data-day="{{ show.show_date|date:"Y-m-d" }}">
-                                {{ show.show_date | date:"l" | capfirst }} {{ show.show_date | date:"d/m" }}
-                            </button>
+                        {% for day in days %}
+                        <button type="button" 
+                                class="btn btn-outline-light bt-box text-center day-button" 
+                                data-day="{{ day|date:"Y-m-d" }}">
+                            {{ day | date:"l" | capfirst }} {{ day | date:"d/m" }}
+                        </button>
                         {% endfor %}
+                    
                     </div>
                 </div>
                     
@@ -84,14 +86,6 @@
                     <h5 id="schedule-title">Horarios disponibles</h5>
                     <div id="schedule-container" class="row ms-4 overflow-auto">
                         <!-- botones de horarios dinámicos con java -->
-                        {% for show in shows %}
-                            <button type="button" 
-                                    class="btn btn-outline-light me-2 horario-button" 
-                                    data-day="{{ show.show_date|date:'Y-m-d' }}" 
-                                    data-id="{{ show.id }}"> <!-- Aquí añadimos el show_id -->
-                                {{ show.show_time|time:"H:i" }}
-                            </button>
-                        {% endfor %}
                     </div>
                 </div>
                 
