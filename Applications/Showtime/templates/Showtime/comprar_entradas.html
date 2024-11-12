@@ -1,7 +1,92 @@
 {% extends 'CinemaSystemApp/base.html' %}
 {% load static %}
 
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'styles/comprarbutton.css' %}">
+{% endblock %}
+
 {% block content %}
-{{ show.show_code }}
-{{ show.film.name }}
+<div class="container my-5">
+    <div class="row">
+        <!-- Columna con la imagen -->
+        <div class="col-md-3 col-sm-3">
+            <div>
+                <img src="{{ show.film.image.url }}" class="img-fluid" alt="Imagen portada">
+            </div>
+        </div>
+        
+        <!-- Columna fondo negro -->
+        <div class="col-md-9 col-sm-9 col-cont">
+            <!-- Titulo-->
+            <div>
+                <h3>{{ show.film.name }}</h3>   
+            </div>
+
+            <!-- Datos de la pelicula -->
+            <div>
+                <p class="linea"></p>
+                <div class="my-5">
+                    <h4>Holiday Cinemas | Villa Carlos Paz</h4>
+                    <h5>{{ show.movie_theater }}</h5>
+                    <h5>Fecha: {{ show.show_date }}</h5>
+                    <h5>Hora: {{ show.show_time }}</h5>
+                    <h5>Formato: {{ show.format }}</h5>
+                    <h5>Idioma: {{ show.language }}</h5>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Comprar entradas con sus tipos y precio -->
+
+<div class="container">
+    <p class="linea2"></p>
+
+    <div class="d-flex align-items-center">
+        <div class="row w-100">
+            <!-- Col tipos de entrada y precio -->
+            <div class="col-md-6">
+            <!-- regular -->
+            {% for price in show.prices.all %}
+            <div class="price-bar" data-price-amount="{{ price.amount }}" data-ticket-quantity="{{ price.ticket_quantity }}">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="fw-bold">{{ price.name }}</span>
+                    <div class="d-flex align-items-center">
+                        <span class="me-3 fs-5 fw-bold">${{ price.amount }}</span>
+                        <button class="btn btn-outline-light btn-control btn-minus">-</button>
+                        <span class="mx-3 fs-5 quantity-display">0</span>
+                        <button class="btn btn-outline-light btn-control btn-plus">+</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+    
+            <!-- resultados -->
+            <div class="col-md-6 d-flex flex-column align-items-left justify-content-center">
+            <h4 class="fw-bold mb-3">Resumen:</h4>
+            <p class="fs-5 fw-bold" id="result-summary">
+                {% for price in show.prices.all %}
+                <span id="summary-price-{{ forloop.counter0 }}" 
+                      class="price-summary"
+                      data-amount="{{ price.amount }}" 
+                      data-ticket-quantity="{{ price.ticket_quantity }}">
+                    {{ price.name }} (<span class="quantity-display-summary">0</span>)
+                </span>{% if not forloop.last %} - {% endif %}
+                {% endfor %}
+            </p>
+            <p class="fs-5 fw-bold" id="total-tickets">Total de entradas: 0</p>
+            <p class="fs-5 fw-bold" id="total-payment">Total a pagar: $0</p>                           
+            <a class="btn btn-red text-white" href="#">Comprar Entradas</a>
+
+            </div>
+        </div>
+    </div>  
+</div>
+
+{% block scripts %}
+<script src="{% static 'JS/scriptbutton.js' %}"></script>
+{% endblock %}
 {% endblock %}

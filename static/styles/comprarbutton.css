@@ -1,0 +1,83 @@
+h3{
+    font-family: Anton;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 96.34px;
+    text-align: left;
+}
+
+h4{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24.2px;
+    text-align: left;
+}
+
+h5{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.2px;
+    text-align: left;
+
+}
+
+.background-p {
+    display: inline-block; /*el backgr se va a ajustar texto */
+    text-align: center;
+    background: rgba(103, 103, 103, 1);
+    margin-top: 2px;
+    height: 30px;
+    padding: 3px;
+    border-radius: 11.48px;
+}
+
+.col-cont {
+    border-radius: 5px;
+}
+.linea{
+    margin-top: 80px;
+    border: 1px solid rgba(103, 103, 103, 1);
+}
+.linea2{
+    border: 1px solid rgba(103, 103, 103, 1)
+}
+.btn {
+    margin: 0.7rem;
+}
+
+.btn-outline-light {
+    max-width: 100px; 
+    max-height: 60px;
+    gap: 0px;
+}
+
+.btn-red {
+    background: linear-gradient(180deg, #E5383B 0%, #BA181B 34%, #A4161A 67%, #660708 100%);
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 43px;
+    width: 100%; 
+    height: 50px;     
+    padding: 1px 5px;
+    border-radius: 8px;
+}
+
+.price-bar {
+    background-color: rgba(103, 103, 103, 1);
+    padding: 1px 5px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    height: 50px;     
+
+}
+
+  .btn-control {
+    width: 20px;
+    height: 25px;
+    border-radius: 50%;  /* Botones redondos */
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
