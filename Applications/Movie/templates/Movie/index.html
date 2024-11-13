@@ -47,25 +47,27 @@
             <img src="{{ film.image.url }}" class="tarjeta-img" alt="{{ film.name }}">
             <div class="tarjeta-info">
                 <h5>{{ film.name }}</h5>
-                <p>Duración: {{ film.duration }} min</p>
-                <p>Clasificación de Edad: {{ film.age_restriction }}</p>
-                <p>Géneros: 
-                    {% for genre in film.genres.all %}
-                        {{ genre.name }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
-                <p>Formatos: 
-                    {% for format in film.format.all %}
-                        {{ format.name }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
-                <p>
-                    Lenguajes: 
-                    {% for language in film.language.all %}
-                        {{ language.name }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
-                <p>Fecha de Estreno: {{ film.release_date|date:"d/m/Y" }}</p>
+                <div class="my-2">
+                    <p>Duración: {{ film.duration }} min</p>
+                    <p>Clasificación de Edad: {{ film.age_restriction }}</p>
+                    <p>Géneros: 
+                        {% for genre in film.genres.all %}
+                            {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p>Formatos: 
+                        {% for format in film.format.all %}
+                            {{ format.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p>
+                        Lenguajes: 
+                        {% for language in film.language.all %}
+                            {{ language.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p>Fecha de Estreno: {{ film.release_date|date:"d/m/Y" }}</p>
+                </div>
                 <button class="btn btn-outline-dark w-100 mb-2" 
                         data-bs-toggle="modal" 
                         data-bs-target="#sinopsisModal" 
@@ -85,25 +87,27 @@
             <img src="{{ film.image.url }}" class="tarjeta-img" alt="{{ film.name }}">
             <div class="tarjeta-info">
                 <h5>{{ film.name }}</h5>
-                <p>Duración: {{ film.duration }} min</p>
-                <p>Clasificación de Edad: {{ film.age_restriction }}</p>
-                <p>Géneros: 
-                    {% for genre in film.genres.all %}
-                        {{ genre.name }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
-                <p>Formatos: 
-                    {% for format in film.format.all %}
-                        {{ format.name }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
-                <p>
-                    Lenguajes: 
-                    {% for language in film.language.all %}
-                        {{ language.name }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
-                <p>Fecha de Estreno: {{ film.release_date|date:"d/m/Y" }}</p>
+                <div class="my-2">
+                    <p>Duración: {{ film.duration }} min</p>
+                    <p>Clasificación de Edad: {{ film.age_restriction }}</p>
+                    <p>Géneros: 
+                        {% for genre in film.genres.all %}
+                            {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p>Formatos: 
+                        {% for format in film.format.all %}
+                            {{ format.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p>
+                        Lenguajes: 
+                        {% for language in film.language.all %}
+                            {{ language.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p>Fecha de Estreno: {{ film.release_date|date:"d/m/Y" }}</p>
+                </div>
                 <button class="btn btn-outline-dark w-100 mb-2" 
                         data-bs-toggle="modal" 
                         data-bs-target="#sinopsisModal" 
