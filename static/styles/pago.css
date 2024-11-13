@@ -1,0 +1,65 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background-color: black;
+    color: #FFF;
+}
+
+/* Formulario de pago */
+.payment-form {
+    max-width: 570px;
+    max-height: 729px;
+    margin: 5rem auto;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    color: black;
+}
+
+.payment-form h4 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.payment-form .input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment-form .card-icons {
+    display: flex;
+    align-items: center;
+}
+
+.payment-form .card-icons img {
+    width: 40px;
+    margin-left: 10px;
+}
+
+.payment-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.payment-form .form-control {
+    border-radius: 4px;
+    padding: 0.75rem;
+}
+
+.payment-form button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.payment-form button:hover {
+    background-color: #333;
+}

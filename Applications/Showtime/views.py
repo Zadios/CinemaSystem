@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from Applications.Movie.models import Film, Format, Language
 from .models import Show, Movie_Theater
 from datetime import date, timedelta
+from .forms import PagoForm
 
 def horarios(request, film_id):
     film = get_object_or_404(Film, pk=film_id)
@@ -48,11 +49,32 @@ def horarios(request, film_id):
     return render(request, 'showtime/horarios.html', context)
 
 def comprar_entradas(request, show_id):
-    # Obtener el show específico usando el show_id
     show = get_object_or_404(Show, pk=show_id)
-
-    # Contexto para el template: puedes pasar cualquier dato necesario para la compra
+    
+    if request.method == "POST":
+        # Lógica para manejar la selección de entradas, p.ej., almacenar en la sesión
+        # Ejemplo de almacenamiento temporal en la sesión:
+        request.session['selected_show'] = show_id
+        # Puedes almacenar más información aquí si lo necesitas.
+        
+        # Redirigir a la página de pago
+        return redirect('showtime:pago')
+    
     context = {
         'show': show,
     }
     return render(request, 'showtime/comprar_entradas.html', context)
+
+
+def pago(request):
+    if request.method == "POST":
+        form = PagoForm(request.POST)
+        if form.is_valid():
+            # Procesar el pago aquí (ej., guardar en base de datos o enviar a una pasarela de pagos)
+            # Luego redirigir a una página de confirmación o a la vista final.
+            return redirect('showtime:confirmacion')
+    else:
+        form = PagoForm()
+
+    context = {'form': form}
+    return render(request, 'showtime/pago.html', context)

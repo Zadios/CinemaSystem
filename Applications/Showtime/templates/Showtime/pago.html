@@ -1,0 +1,74 @@
+{% extends 'CinemaSystemApp/base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'styles/pago.css' %}">
+{% endblock %}
+
+{% block title %}Pago{% endblock %}
+
+{% block content %}
+    <!-- Formulario de pago -->
+    <div class="container">
+        <div class="payment-form">
+            <form method="post" action="">
+                {% csrf_token %}
+                
+                <!-- Número de la tarjeta -->
+                <div class="form-group">
+                    <label for="numero_tarjeta">{{ form.numero_tarjeta.label }}</label>
+                    {{ form.numero_tarjeta }}
+                    <div class="card-icons">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/1200px-Visa.svg.png" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/1200px-Mastercard_2019_logo.svg.png" alt="MasterCard">
+                    </div>
+                    {{ form.numero_tarjeta.errors }}
+                </div>
+
+                <!-- Fecha de Caducidad y Código de Seguridad -->
+                <div class="form-row d-flex justify-content-between">
+                    <div class="form-group col-6">
+                        <label for="fecha_caducidad">{{ form.fecha_caducidad.label }}</label>
+                        {{ form.fecha_caducidad }}
+                        {{ form.fecha_caducidad.errors }}
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="cvv">{{ form.cvv.label }}</label>
+                        {{ form.cvv }}
+                        {{ form.cvv.errors }}
+                    </div>
+                </div>
+
+                <!-- Titular de la Tarjeta -->
+                <div class="form-group">
+                    <label for="nombre_titular">{{ form.nombre_titular.label }}</label>
+                    {{ form.nombre_titular }}
+                    {{ form.nombre_titular.errors }}
+                </div>
+
+                <!-- Correo Electrónico y Confirmación -->
+                <div class="form-group">
+                    <label for="email">{{ form.email.label }}</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmar_email">{{ form.confirmar_email.label }}</label>
+                    {{ form.confirmar_email }}
+                    {{ form.confirmar_email.errors }}
+                </div>
+
+                <!-- DNI -->
+                <div class="form-group">
+                    <label for="dni">{{ form.dni.label }}</label>
+                    {{ form.dni }}
+                    {{ form.dni.errors }}
+                </div>
+
+                <!-- Botón de envío -->
+                <button type="submit">Pagar</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

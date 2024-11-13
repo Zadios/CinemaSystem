@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="{% static 'styles/comprarbutton.css' %}">
 {% endblock %}
 
+{% block title %}Comprar Entradas | {{ show.film.name }}{% endblock %}
+
 {% block content %}
 <div class="container my-5">
     <div class="row">
@@ -79,7 +81,7 @@
             </p>
             <p class="fs-5 fw-bold" id="total-tickets">Total de entradas: 0</p>
             <p class="fs-5 fw-bold" id="total-payment">Total a pagar: $0</p>                           
-            <a class="btn btn-red text-white" href="#">Comprar Entradas</a>
+            <a class="btn btn-red text-white" href="{% url 'showtime:pago' %}">Comprar Entradas</a>
 
             </div>
         </div>
