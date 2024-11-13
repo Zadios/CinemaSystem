@@ -1,0 +1,192 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background-color: black;
+    color: #FFF;
+}
+
+/* Contenedor del formulario de registro */
+.contenedor-bienvenidos-registro {
+    display: flex;
+    width: 571px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 35px;
+    flex-shrink: 0;
+    margin-right: 50px; /* Centra el contenedor */
+    
+}
+
+.contenedor-bienvenidos-registro h1,
+.contenedor-bienvenidos-registro p {
+    color: white;
+    text-align: center;
+   
+    
+}
+
+.form-group label {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 560px;
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 2px solid #FFFFFF; 
+}
+
+/* Botón de registro */
+.btn-dark h2,.btn-outline-dark h2 {
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.btn-dark,.btn-outline-dark {
+    width: 560px;
+    height: 75px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    color: #000;
+    background: white;
+   
+}
+.btn-outline-dark {
+    color: white;
+    background-color: transparent;
+    border: 2px solid #FFFFFF;
+}
+/* Contenedor del formulario de registro */
+
+
+/* Estilos para el contenedor de beneficios */
+.contenedor-beneficios {
+    width: 580px;
+    height: 670px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #949494;
+    margin-top: 24px;
+    
+}
+
+.benefits-box h1,
+.benefits-box h2 {
+    color: #FFF;
+    text-align: center;
+    
+}
+
+.benefit img {
+    max-width: 100%;
+    height: auto;
+}
+
+.col-9 h3 {
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.col-9 p {
+    color: #FFF;
+    font-size: 16px;
+    max-width: 400px;
+}
+
+/* Media Queries para pantallas pequeñas */
+
+@media (max-width: 768px) {
+    .contenedor-bienvenidos-registro,
+    .contenedor-beneficios {
+        display: flex;  /* Asegúrate de que el contenedor sea flex */
+        flex-direction: column;  /* Mantener la dirección de flexión como columna */
+        align-items: center;  /* Centrar los elementos horizontalmente */
+        padding: 10px;  /* Espaciado interior */
+        margin-top: 20px;  /* Centrar el contenedor en la pantalla */
+    }
+
+    .contenedor-bienvenidos-registro h1 {
+        font-size: 28px;
+    }
+
+    .contenedor-bienvenidos-registro p,
+    .form-group label,
+    .btn-dark h2,
+    .mt-2 p,
+    .mt-2 a {
+        font-size: 16px;
+    }
+
+    .form-group input,
+    .btn-dark,
+    .btn-outline-dark {
+        width: 100%;  /* Usar 100% del ancho */
+        max-width: none;  /* Desactivar cualquier limitación de ancho */
+    }
+    
+    .btn-dark {
+        width: 100%;  /* Ancho fijo para el botón */
+        height: 50px;  /* Altura fija para el botón */
+    }
+
+    .btn-outline-dark {
+        width: 100%;  /* Ancho fijo para el segundo botón */
+        height: 50px;  /* Altura fija para el segundo botón */
+    }
+
+    .benefits-box h1 {
+        font-size: 28px;
+    }
+
+    .benefits-box h2 {
+        font-size: 24px;
+    }
+
+    .col-9 p {
+        font-size: 14px;
+    }
+}
+
+/* Media Queries para pantallas extra pequeñas */
+@media (max-width: 576px) {
+    .contenedor-bienvenidos-registro,
+    .contenedor-beneficios {
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+    .benefits-box {
+        text-align: center;
+    }
+
+    .benefit img {
+        width: 100px;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .btn-dark {
+        width: 100%;
+        height: 50px;
+    }
+
+    .btn-outline-dark {
+        width: 100%;  /* Ancho fijo para el segundo botón */
+        height: 50px;  /* Altura fija para el segundo botón */
+    }
+
+    .col-9 p,
+    .col-9 h3 {
+        text-align: center;
+        max-width: 100%;
+    }
+}
+

@@ -29,3 +29,17 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+class Users(models.Model):
+    email = models.EmailField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "User"  # Nombre singular
+        verbose_name_plural = "Users"  # Nombre plural
+
+    def __str__(self):
+        return self.email
+
+

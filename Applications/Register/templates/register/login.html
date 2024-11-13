@@ -1,18 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
-</head>
-<body>
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+{% extends 'CinemaSystemApp/base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'styles/style_login.css' %}" />
+{% endblock %}
+
+{% block content %}
+<main class="container my-5">
+    <div class="row">
+        <div class="col-md-6 contenedor-bienvenidos-registro">
+            <h1 class="font-weight-bold" style="font-size: 32px;">¡HOLA DE NUEVO!</h1>
+            <p class="font-weight-normal" style="font-size: 20px;">Ingresa colocando los datos que usaste durante tu registro</p>
+            <form>
+                <div class="form-group">
+                    <label for="email" class="font-weight-semibold" style="font-size: 20px;">Correo electrónico</label>
+                    <input type="email" class="form-control custom-input" id="email" placeholder="ejemplo@correo.com" style="font-size: 16px;">
+                </div>
+                <div class="form-group" style="margin-top: 20px;">
+                    <input type="password" class="form-control custom-input" id="password" placeholder="Ingrese su contraseña" style="font-size: 16px;">
+                </div>
+                <button type="submit" class="btn btn-dark font-weight-bold" style="font-size: 20px; margin-top: 20px;">Ingresar</button>
+                <a class="btn btn-outline-dark btn-block" href="{% url 'login-register:register' %}" style="font-size: 20px; margin-top: 20px;">Regístrate aquí</a>
+
+            </form>
+        </div>
+        <div class="col-md-6 contenedor-beneficios">
+            <div class="benefits-box p-4">
+                <h1>Beneficios de tener una cuenta en <span>Holiday Cinemas</span></h1>
+                <div class="row benefit mt-4">
+                    <div class="col-3">
+                        <img src="{% static 'img/imag1.png' %}"alt="Beneficio 1" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <h3 class="font-weight-bold" style="font-size: 16px;">Beneficio 1</h3>
+                        <p class="font-weight-normal" style="font-size: 16px;">Lorem ipsum dolor sit amet consectetur adipiscing elit ut, torquent eros eleifend ridiculus.</p>
+                    </div>
+                </div>
+                <div class="row benefit mt-3">
+                    <div class="col-3">
+                        <img src="{% static 'img/imag2.png' %}" alt="Beneficio 2" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <h3 class="font-weight-bold" style="font-size: 16px;">Beneficio 2</h3>
+                        <p class="font-weight-normal" style="font-size: 16px;">Lorem ipsum dolor sit amet consectetur adipiscing elit ut, torquent eros eleifend ridiculus.</p>
+                    </div>
+                </div>
+                <div class="row benefit mt-3">
+                    <div class="col-3">
+                        <img src="{% static 'img/imag3.png' %}"alt="Beneficio 3" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <h3 class="font-weight-bold" style="font-size: 16px;">Beneficio 3</h3>
+                        <p class="font-weight-normal" style="font-size: 16px;">Lorem ipsum dolor sit amet consectetur adipiscing elit ut, torquent eros eleifend ridiculus.</p>
+                    </div>
+                </div>
+                <div class="row benefit mt-3">
+                    <div class="col-3">
+                        <img src="{% static 'img/imag4.png' %}"alt="Beneficio 4" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <h3 class="font-weight-bold" style="font-size: 16px;">Beneficio 4</h3>
+                        <p class="font-weight-normal" style="font-size: 16px;">Lorem ipsum dolor sit amet consectetur adipiscing elit ut, torquent eros eleifend ridiculus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
