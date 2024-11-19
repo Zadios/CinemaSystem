@@ -18,12 +18,12 @@
     height: 90%;
 }
 
-/*largo de las categorias que voy agregando*/
+/*espacio para las categorias*/
 .text-container {
     height: 10%;
 }
 
-/*color y tamaño de las categorias*/
+/*categorias*/
 .background-p {
     display: inline-block; /*el backgr se va a ajustar texto */
     text-align: center;
@@ -33,7 +33,7 @@
     border-radius: 11.48px;
 }
 
-/*estilos de la columna gris*/
+/*col-gris*/
 .col-cont {
     background-color: rgba(45, 45, 45, 1);
     border-radius: 5px;
@@ -41,7 +41,7 @@
     width: 74%;
 }
 
-/*estilos de seleccionar formato y seleccionar idioma*/
+/*estilos de seleccionar formato e idioma*/
 .form-select {
     background-color: rgba(50, 55, 65, 1);
     color: rgba(176, 184, 204, 1);
@@ -99,25 +99,23 @@ iframe {
     height: 100%;
 }
 @media (min-width: 992px) and (max-width: 1200px){
-    /* Ajustar las columnas */
     .col-md-3,
     .col-md-9 {
         flex: 0 0 100%;
         max-width: 100%;
     }
-    /* Centrar la columna .col-md-3 */
+    
     .col-md-3 {
         margin-left: auto;
-        margin-right: auto;   /* Centra la columna horizontalmente */
-        max-width: 300px;     /* Opcional: establecer un ancho máximo si quieres que no ocupe toda la pantalla */
+        margin-right: auto;
+        max-width: 300px;
     }
     .col-md-9{
         margin-left: auto;
-        margin-right: auto;   /* Centra la columna horizontalmente */
-        max-width: 600px;     /* Opcional: establecer un ancho máximo si quieres que no ocupe toda la pantalla */
+        margin-right: auto;
+        max-width: 600px;
     }
     
-    /* Espaciado de los selectores */
     .form-select {
         max-width: 100%;
         padding: 12px;
@@ -130,36 +128,27 @@ iframe {
         overflow-y: auto;
         padding-bottom: 20px;
     }
-
 }
 
 @media (min-width: 768px) and (max-width: 991px){
-    /* Ajustar las columnas */
     .col-md-3,
     .col-md-9 {
         flex: 1; /* Hace que ambas columnas ocupen el mismo ancho */
         max-width: 50%;
-    }
-    
-    
-    /* Espaciado de los selectores */
+    }    
     .form-select {
         max-width: 100%;
         padding: 12px;
         font-size: 16px;
     }
-
-    /* Ajustar contenedor de horarios para pantallas más pequeñas */
     #schedule-container {
         max-height: 200px;
         overflow-y: auto;
         padding-bottom: 20px;
     }
-
 }
 
 @media (max-width: 767px){
-    /* Ajustar las columnas */
     .col-md-3,
     .col-md-9 {
         flex: 0 0 100%;
@@ -167,19 +156,17 @@ iframe {
     }
     .col-md-3 {
         margin-left: auto;
-        margin-right: auto;   /* Centra la columna horizontalmente */
-        max-width: 300px;     /* Opcional: establecer un ancho máximo si quieres que no ocupe toda la pantalla */
+        margin-right: auto;   
+        max-width: 300px;     
     }
     .col-md-9 {
         margin-left: auto;
-        margin-right: auto;   /* Centra la columna horizontalmente */
-        max-width: 510px;     /* Opcional: establecer un ancho máximo si quieres que no ocupe toda la pantalla */
-    }
-    
+        margin-right: auto;   
+        max-width: 510px;     
+    }    
     .form-select {
         max-width: 90%;
         font-size: 15px;
         padding: 12px;
     }
-
 }
