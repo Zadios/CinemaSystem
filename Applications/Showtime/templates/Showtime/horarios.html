@@ -23,11 +23,11 @@
 
 <div class="container my-4">
     <div>
-        <h2 class="text-center">{{ film.name }}</h2>   
+        <h2 class="text-center title-movie">{{ film.name }}</h2>   
     </div>
     <div class="row">
         <div class="col-md-3 col-sm-3">
-            <div class="image-container centrar">
+            <div class="image-container">
                 <img src="{{ film.image.url }}" class="img-fluid img-poster" alt="Imagen portada">
             </div>
             <div class="text-container my-2">
@@ -42,11 +42,11 @@
         <div class="col-md-9 col-sm-9 col-cont">
 
             <div>
-                <p class="linea"></p>
+                
                 <div class="mb-3">
                     <div class="row ms-3">
                     <!-- Selección de formato -->
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-4 col-sm-12">
                             <select id="format-select" name="format" class="form-select mb-2" aria-label="Selecciona el formato">
                                 <option selected disabled>Selecciona el formato</option>
                                 {% for format in formats %}
@@ -56,7 +56,7 @@
                         </div>
 
                         <!-- Selección de idioma -->
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-4 col-sm-12">
                             <select id="language-select" name="language" class="form-select mb-4" aria-label="Selecciona el idioma">
                                 <option selected disabled>Selecciona el idioma</option>
                                 {% for language in languages %}
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <h5>Días</h5>
+                    <h5 class="title-horarios">Días</h5>
                     <div class="row ms-3" id="day-buttons">
                         <!-- Botones de los días -->
                         {% for day in days %}
@@ -83,7 +83,7 @@
                 </div>
                     
                 <div class="mb-3">
-                    <h5 id="schedule-title">Horarios disponibles</h5>
+                    <h5 class="title-horarios" id="schedule-title">Horarios disponibles</h5>
                     <div id="schedule-container" class="row ms-4 overflow-auto">
                         <!-- botones de horarios dinámicos con java -->
                     </div>
@@ -102,7 +102,7 @@
 <!-- Sinopsis -->
 <div class="container">
     <section>
-        <h3>Sinopsis</h3>
+        <h3 class="title-sinopsis">Sinopsis</h3>
         <p>{{ film.synopsis }}</p>
     </section>
 </div>
