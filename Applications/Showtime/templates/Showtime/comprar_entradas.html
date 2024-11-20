@@ -46,46 +46,53 @@
 <div class="container">
     <p class="linea2"></p>
 
-    <div class="d-flex align-items-center">
-        <div class="row w-100">
-            <!-- Col tipos de entrada y precio -->
-            <div class="col-md-6">
-            <!-- regular -->
-            {% for price in show.prices.all %}
-            <div class="price-bar" data-price-amount="{{ price.amount }}" data-ticket-quantity="{{ price.ticket_quantity }}">
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold">{{ price.name }}</span>
-                    <div class="d-flex align-items-center">
-                        <span class="me-3 fs-5 fw-bold">${{ price.amount }}</span>
-                        <button class="btn btn-outline-light btn-control btn-minus">-</button>
-                        <span class="mx-3 fs-5 quantity-display">0</span>
-                        <button class="btn btn-outline-light btn-control btn-plus">+</button>
+    <form method="POST" action="{% url 'showtime:pago' %}">
+        {% csrf_token %}
+        <div class="d-flex align-items-center">
+            <div class="row w-100">
+                <!-- Col tipos de entrada y precio -->
+                <div class="col-md-6">
+                    {% for price in show.prices.all %}
+                    <div class="price-bar" data-price-amount="{{ price.amount }}" data-ticket-quantity="{{ price.ticket_quantity }}">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">{{ price.name }}</span>
+                            <div class="d-flex align-items-center">
+                                <span class="me-3 fs-5 fw-bold">${{ price.amount }}</span>
+                                <button type="button" class="btn btn-outline-light btn-control btn-minus">-</button>
+                                <span class="mx-3 fs-5 quantity-display">0</span>
+                                <button type="button" class="btn btn-outline-light btn-control btn-plus">+</button>
+                            </div>
+                        </div>
+                        <!-- Inputs ocultos para enviar los datos seleccionados -->
+                        <input type="hidden" name="promociones[]" value="{{ price.id_price }}">
+                        <input type="hidden" name="cantidades[]" class="quantity-input" value="0">
                     </div>
+                    {% endfor %}
+                </div>
+    
+                <!-- Resultados -->
+                <div class="col-md-6 d-flex flex-column align-items-left justify-content-center">
+                    <h4 class="fw-bold mb-3">Resumen:</h4>
+                    <p class="fs-5 fw-bold" id="result-summary">
+                        {% for price in show.prices.all %}
+                        <span id="summary-price-{{ forloop.counter0 }}" 
+                              class="price-summary"
+                              data-amount="{{ price.amount }}" 
+                              data-ticket-quantity="{{ price.ticket_quantity }}">
+                            {{ price.name }} (<span class="quantity-display-summary">0</span>)
+                        </span>{% if not forloop.last %} - {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p class="fs-5 fw-bold" id="total-tickets">Total de entradas: 0</p>
+                    <p class="fs-5 fw-bold" id="total-payment">Total a pagar: $0</p>
+    
+                    <!-- Botón de enviar -->
+                    <button type="submit" class="btn btn-red text-white">Comprar Entradas</button>
                 </div>
             </div>
-            {% endfor %}
-            </div>
-    
-            <!-- resultados -->
-            <div class="col-md-6 d-flex flex-column align-items-left justify-content-center">
-            <h4 class="fw-bold mb-3">Resumen:</h4>
-            <p class="fs-5 fw-bold" id="result-summary">
-                {% for price in show.prices.all %}
-                <span id="summary-price-{{ forloop.counter0 }}" 
-                      class="price-summary"
-                      data-amount="{{ price.amount }}" 
-                      data-ticket-quantity="{{ price.ticket_quantity }}">
-                    {{ price.name }} (<span class="quantity-display-summary">0</span>)
-                </span>{% if not forloop.last %} - {% endif %}
-                {% endfor %}
-            </p>
-            <p class="fs-5 fw-bold" id="total-tickets">Total de entradas: 0</p>
-            <p class="fs-5 fw-bold" id="total-payment">Total a pagar: $0</p>                           
-            <a class="btn btn-red text-white" href="{% url 'showtime:pago' %}">Comprar Entradas</a>
-
-            </div>
         </div>
-    </div>  
+    </form>
+      
 </div>
 
 {% block scripts %}

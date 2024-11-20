@@ -1,0 +1,24 @@
+{% extends 'CinemaSystemApp/base.html' %}
+
+{% block title %}Confirmación{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>¡Tu compra fue exitosa!</h1>
+    <p><strong>Código del ticket:</strong> {{ ticket.ticket_code }}</p>
+    <p><strong>Película:</strong> {{ ticket.show.film.name }} ({{ ticket.show.format }} - {{ ticket.show.language }})</p>
+    <p><strong>Fecha:</strong> {{ ticket.show.show_date }}</p>
+    <p><strong>Hora:</strong> {{ ticket.show.show_time }}</p>
+    <p><strong>Sala:</strong> {{ ticket.show.movie_theater }}</p>
+    <p><strong>Cantidad de entradas:</strong> {{ ticket.total_tickets }}</p>
+    <p><strong>Total pagado:</strong> ${{ ticket.total_price }}</p>
+
+    <h2>Promociones:</h2>
+    <ul>
+        {% for promo in ticket.purchased_prices.all %}
+            <li>{{ promo.quantity }} x {{ promo.price.name }} ({{ promo.price.amount }} c/u)</li>
+        {% endfor %}
+    </ul>
+    <p>Presenta este código en la boletería para ingresar al cine. ¡Disfruta la película!</p>
+</div>
+{% endblock %}
