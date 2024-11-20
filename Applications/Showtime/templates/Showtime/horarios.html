@@ -47,7 +47,7 @@
                     <div class="row ms-3">
                     <!-- Selección de formato -->
                         <div class="col-md-4 col-sm-12">
-                            <select id="format-select" name="format" class="form-select mb-2" aria-label="Selecciona el formato">
+                            <select id="format-select" name="format" class="form-select" aria-label="Selecciona el formato">
                                 <option selected disabled>Selecciona el formato</option>
                                 {% for format in formats %}
                                     <option value="{{ format.id_format }}" {% if format.id_format|stringformat:"s" == selected_format %}selected{% endif %}>{{ format.name }}</option>
@@ -57,7 +57,7 @@
 
                         <!-- Selección de idioma -->
                         <div class="col-md-4 col-sm-12">
-                            <select id="language-select" name="language" class="form-select mb-4" aria-label="Selecciona el idioma">
+                            <select id="language-select" name="language" class="form-select" aria-label="Selecciona el idioma">
                                 <option selected disabled>Selecciona el idioma</option>
                                 {% for language in languages %}
                                     <option value="{{ language.id_language }}" {% if language.id_language|stringformat:"s" == selected_language %}selected{% endif %}>{{ language.name }}</option>
