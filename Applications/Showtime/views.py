@@ -55,10 +55,10 @@ def comprar_entradas(request, show_id):
     # Obtener el show y asignar el show_code a la sesión
     show = get_object_or_404(Show, pk=show_id)
     
-    # Limpiar las promociones anteriores de la sesión
-    request.session.pop('selected_promotions', None)
-    request.session.pop('promociones_seleccionadas', None)
-    
+    # Limpiar las promociones anteriores de la sesión (solo si la clave existe)
+    if request.session.get('selected_promotions') is not None:
+        request.session.pop('selected_promotions', None)
+
     # Guardar show_id en la sesión
     request.session['show_id'] = show.show_code
     print(f"Show ID guardado en sesión: {request.session['show_id']}")
@@ -72,8 +72,8 @@ def comprar_entradas(request, show_id):
 
         # Verificar si hay promociones seleccionadas
         if promociones:
-            request.session["promociones_seleccionadas"] = promociones
-            print(f"Promociones guardadas en sesión: {request.session['promociones_seleccionadas']}")
+            request.session['selected_promotions'] = promociones
+            print(f"Promociones guardadas en sesión: {request.session['selected_promotions']}")
 
         # Filtrar las promociones seleccionadas para guardar solo las de cantidad mayor a 0
         if promociones and cantidades:
@@ -96,6 +96,7 @@ def comprar_entradas(request, show_id):
 
     context = {'show': show}
     return render(request, 'showtime/comprar_entradas.html', context)
+
 
 def pago(request):
     # Recuperar el show_id de la sesión
@@ -159,7 +160,6 @@ def confirmacion(request, ticket_code):
         return HttpResponse("Ticket no encontrado", status=404)
     
     request.session.pop('selected_promotions', None)
-    request.session.pop('promociones_seleccionadas', None)
     request.session.pop('show_id', None)
     
     return render(request, 'showtime/confirmacion.html', {'ticket': ticket})

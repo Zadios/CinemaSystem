@@ -15,12 +15,11 @@ function updateQuantityDisplay(display, summaryDisplay, increment) {
 
     // Actualizar el valor del input oculto
     const hiddenInput = display.closest(".price-bar").querySelector(".quantity-input");
-    hiddenInput.value = newValue;
+    hiddenInput.value = newValue; // Actualiza el valor del input oculto con la nueva cantidad
 
     // Actualizar los totales
     updateTotals();
 }
-
 
 // Función para calcular el total de dinero y entradas
 function updateTotals() {
@@ -68,4 +67,3 @@ plusButtons.forEach((button, index) => {
         updateQuantityDisplay(display, summaryDisplay, 1); // Aumentar en 1
     });
 });
-
