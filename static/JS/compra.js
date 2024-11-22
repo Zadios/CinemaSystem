@@ -62,6 +62,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Manejador de evento para los botones de horarios
     scheduleContainer.addEventListener("click", function(event) {
         if (event.target && event.target.matches("button.horario-button")) {
+            //cambio
+            // Quitar la clase 'selected' de todos los botones
+            const horarioButtons = document.querySelectorAll(".horario-button");
+            horarioButtons.forEach(button => button.classList.remove("selected"));
+
+            // Añadir la clase 'selected' al botón clickeado
+            event.target.classList.add("selected");
+            console.log("Clase 'selected' añadida al botón:", event.target);
+
+            //cambio
+            // Obtener el show_id seleccionado
             selectedShowId = event.target.getAttribute("data-show-id");
             console.log("Show ID seleccionado:", selectedShowId);
         }

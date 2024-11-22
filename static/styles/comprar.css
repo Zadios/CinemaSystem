@@ -1,31 +1,28 @@
 /*Modificacion en titulos*/
-h2{
+.title-movie{
     font-size: 64px;
-    font-weight: 400;
-    line-height: 96.34px;
-    text-align: center;
 }
-h5{
+.title-horarios{
     padding: 5px;
     background-color: rgba(69, 69, 69, 1);
 }
-
-.day {
-    font-size: 16px;
-    font-weight: normal;
+.title-sinopsis{
+    margin-top: 10px;
+    font-size: 36px;
+    font-weight: 600;
 }
-
 
 /*largo de la imagen*/
 .image-container {
     height: 90%;
 }
-/*largo de las categorias que voy agregando*/
+
+/*espacio para las categorias*/
 .text-container {
     height: 10%;
 }
 
-/*color y tamaño de las categorias*/
+/*categorias*/
 .background-p {
     display: inline-block; /*el backgr se va a ajustar texto */
     text-align: center;
@@ -35,19 +32,20 @@ h5{
     border-radius: 11.48px;
 }
 
-/*estilos de la columna gris*/
+/*col-gris*/
 .col-cont {
     background-color: rgba(45, 45, 45, 1);
     border-radius: 5px;
     padding: 20px 0px 0px 0px;
+    width: 74%;
 }
 
-/*estilos de seleccionar formato y seleccionar idioma*/
+/*estilos de seleccionar formato e idioma*/
 .form-select {
     background-color: rgba(50, 55, 65, 1);
     color: rgba(176, 184, 204, 1);
-    margin-bottom: 10px;
-    max-width: 250px;
+    margin-bottom: 8px;
+    max-width: 300px;
     height: 50px;
     padding: 15px 65px 15px 25px;
     border-radius: 8px;
@@ -57,7 +55,6 @@ h5{
 .btn-outline-light {
     max-width: 100px; 
     max-height: 60px;
-    gap: 0px;
 }
 
 .btn-red {
@@ -89,6 +86,10 @@ h5{
     max-height: 150px;
     overflow-y: auto;
 }
+.horario-button.selected {
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+}
 
 /*estilos del trailer*/
 #video-container {
@@ -99,4 +100,77 @@ h5{
 iframe {
     width: 100%;
     height: 100%;
+}
+
+@media (min-width: 992px) and (max-width: 1200px){
+    .col-md-3,
+    .col-md-9 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .col-md-3 {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 300px;
+    }
+    .col-md-9{
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 600px;
+    }
+    
+    .form-select {
+        max-width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    /* Ajustar contenedor de horarios para pantallas más pequeñas */
+    #schedule-container {
+        max-height: 200px;
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+    .col-md-3,
+    .col-md-9 {
+        flex: 1; /* Hace que ambas columnas ocupen el mismo ancho */
+        max-width: 50%;
+    }    
+    .form-select {
+        max-width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+    #schedule-container {
+        max-height: 200px;
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+}
+
+@media (max-width: 767px){
+    .col-md-3,
+    .col-md-9 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .col-md-3 {
+        margin-left: auto;
+        margin-right: auto;   
+        max-width: 300px;     
+    }
+    .col-md-9 {
+        margin-left: auto;
+        margin-right: auto;   
+        max-width: 510px;     
+    }    
+    .form-select {
+        max-width: 90%;
+        font-size: 15px;
+        padding: 12px;
+    }
 }

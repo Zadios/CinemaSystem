@@ -20,30 +20,31 @@
 <div class="container my-5">
     <div class="row">
         <!-- Columna con la imagen -->
-        <div class="col-md-3 col-sm-3">
+        <div class="col-md-3 col-sm-12">
             <div>
-                <img src="{{ show.film.image.url }}" class="img-fluid" alt="Imagen portada">
+                <img src="{{ show.film.image.url }}" class="tarjeta-img img-fluid" alt="Imagen portada">
             </div>
         </div>
         
         <!-- Columna fondo negro -->
-        <div class="col-md-9 col-sm-9 col-cont">
+        <div class="col-md-9 col-sm-12 col-cont">
             <!-- Titulo-->
             <div>
-                <h3>{{ show.film.name }}</h3>   
+                <h3 class="title-mov">{{ show.film.name }}</h3>   
             </div>
 
             <!-- Datos de la pelicula -->
             <div>
                 <p class="linea"></p>
-                <div class="my-5">
-                    <h4>Holiday Cinemas | Villa Carlos Paz</h4>
-                    <h5>{{ show.movie_theater }}</h5>
-                    <h5>Fecha: {{ show.show_date }}</h5>
-                    <h5>Hora: {{ show.show_time }}</h5>
-                    <h5>Formato: {{ show.format }}</h5>
-                    <h5>Idioma: {{ show.language }}</h5>
-                    
+
+                <div class="mt-5">
+                    <h4 class="title-city">Holiday Cinemas | Villa Carlos Paz</h4>
+                    <h5 class="data-function">{{ show.movie_theater }}</h5>
+                    <h5 class="data-function">Fecha: {{ show.show_date }}</h5>
+                    <h5 class="data-function">Hora: {{ show.show_time }}</h5>
+                    <h5 class="data-function">Formato: {{ show.format }}</h5>
+                    <h5 class="data-function">Idioma: {{ show.language }}</h5>                   
+
                 </div>
             </div>
         </div>
@@ -54,7 +55,6 @@
 
 <div class="container">
     <p class="linea2"></p>
-
     <form method="POST" action="{% url 'showtime:pago' %}">
         {% csrf_token %}
         <div class="d-flex align-items-center">
@@ -78,6 +78,7 @@
                         <!-- Inputs ocultos para enviar los datos seleccionados -->
                         <input type="hidden" name="promociones[]" value="{{ price.id_price }}">
                         <input type="hidden" name="cantidades[]" class="quantity-input" value="0">
+                      
                     </div>
                     {% endfor %}
                 </div>

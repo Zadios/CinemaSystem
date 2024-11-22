@@ -1,38 +1,50 @@
-h3{
+/*Letra para los titulos*/
+.title-mov{
     font-size: 40px;
     font-weight: 700;
     line-height: 96.34px;
     text-align: left;
 }
-
-h4{
+.title-city{
     font-size: 20px;
     font-weight: 700;
     line-height: 24.2px;
     text-align: left;
 }
-
-h5{
+.data-function{
     font-size: 20px;
     font-weight: 400;
     line-height: 24.2px;
     text-align: left;
-
+}
+.title-resume{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    text-align: left;
+}
+.title-type{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+.title-price{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+}
+/*Imagen*/
+.tarjeta-img {
+    aspect-ratio: 27 / 40;
+    width: 100%;
+    height: auto; 
+    border-radius: 6px;
+    object-fit: cover; /* Mantiene la proporción de la imagen */
 }
 
-.background-p {
-    display: inline-block; /*el backgr se va a ajustar texto */
-    text-align: center;
-    background: rgba(103, 103, 103, 1);
-    margin-top: 2px;
-    height: 30px;
-    padding: 3px;
-    border-radius: 11.48px;
-}
-
-.col-cont {
-    border-radius: 5px;
-}
+/*Lineas horizontales*/
 .linea{
     margin-top: 80px;
     border: 1px solid rgba(103, 103, 103, 1);
@@ -40,16 +52,8 @@ h5{
 .linea2{
     border: 1px solid rgba(103, 103, 103, 1)
 }
-.btn {
-    margin: 0.7rem;
-}
 
-.btn-outline-light {
-    max-width: 100px; 
-    max-height: 60px;
-    gap: 0px;
-}
-
+/*Botones*/
 .btn-red {
     background: linear-gradient(180deg, #E5383B 0%, #BA181B 34%, #A4161A 67%, #660708 100%);
     font-size: 21px;
@@ -60,23 +64,59 @@ h5{
     padding: 1px 5px;
     border-radius: 8px;
 }
-
 .price-bar {
     background-color: rgba(103, 103, 103, 1);
-    padding: 1px 5px;
+    padding: 4px 9px;
     border-radius: 8px;
+    margin-top: 10px;
     margin-bottom: 15px;
-    height: 50px;     
-
 }
-
-  .btn-control {
+.btn-outline-light {
+    max-width: 100px; 
+    max-height: 60px;
+}
+.btn-control {
     width: 20px;
     height: 25px;
-    border-radius: 50%;  /* Botones redondos */
+    border-radius: 50%;
     font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
- 
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .col-md-3,
+    .col-md-9 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .tarjeta-img {
+        aspect-ratio: unset; 
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        max-width: 270px;
+        display: block;
+        margin: 0 auto; /* Centra horizontalmente */
+    }
+}
+
+@media (max-width: 767px) {
+    .tarjeta-img {
+        max-height: 400px; 
+        max-width: 270px;
+        display: block;
+        margin: 0 auto; /* Centra horizontalmente */
+    }
+
+    .col-cont {
+        text-align: center;
+        padding: 15px;
+    }
+
+    .title-mov {
+        font-size: 28px;
+    }
+}
