@@ -21,7 +21,7 @@ class PriceAdmin(admin.ModelAdmin):
 
 @admin.register(Show)
 class ShowAdmin(admin.ModelAdmin):
-    list_display = ('show_code', 'film', 'movie_theater', 'show_date', 'show_time', 'format', 'language')
+    list_display = ('show_code', 'film', 'movie_theater', 'show_date', 'show_time', 'format', 'language', 'available_seats')
     search_fields = ('name',)
     list_filter = ('show_date', 'movie_theater')
 
@@ -39,7 +39,7 @@ class ShowAdmin(admin.ModelAdmin):
 
 @admin.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ('ticket_code', 'show', 'total_tickets', 'total_price')
+    list_display = ('ticket_code', 'show', 'total_tickets', 'total_price', 'status')
     search_fields = ('ticket_code',)
     list_filter = ('show',)
     ordering = ('ticket_code',)

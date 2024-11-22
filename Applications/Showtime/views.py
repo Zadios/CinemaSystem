@@ -70,28 +70,38 @@ def comprar_entradas(request, show_id):
         promociones = request.POST.getlist('promociones')
         cantidades = request.POST.getlist('cantidades')
 
-        # Verificar si hay promociones seleccionadas
-        if promociones:
-            request.session['selected_promotions'] = promociones
-            print(f"Promociones guardadas en sesión: {request.session['selected_promotions']}")
-
         # Filtrar las promociones seleccionadas para guardar solo las de cantidad mayor a 0
-        if promociones and cantidades:
-            selected_promotions = {}
+        selected_promotions = {}
+        total_tickets = 0
 
+        if promociones and cantidades:
             for promo, cantidad in zip(promociones, cantidades):
                 cantidad = int(cantidad)
                 if cantidad > 0:
                     selected_promotions[promo] = cantidad
+                    total_tickets += cantidad
 
-            # Guardar las promociones seleccionadas en la sesión solo si hay alguna con cantidad > 0
+            # Validar si no se seleccionó ninguna entrada
+            if total_tickets == 0:
+                messages.error(request, "Debes seleccionar al menos una entrada.")
+                return render(request, 'showtime/comprar_entradas.html', {'show': show})
+
+            # Validar si el total de entradas supera los asientos disponibles
+            if total_tickets > show.available_seats:
+                messages.error(
+                    request, 
+                    f"No se pueden solicitar {total_tickets} entradas. Solo hay {show.available_seats} asientos disponibles."
+                )
+                return render(request, 'showtime/comprar_entradas.html', {'show': show})
+
+            # Guardar las promociones seleccionadas en la sesión
             if selected_promotions:
                 request.session['selected_promotions'] = selected_promotions
                 print(f"Datos almacenados en sesión: {request.session['selected_promotions']}")
             else:
                 print("No se seleccionaron promociones con cantidad mayor a 0")
 
-        # Redirigir al pago
+        # Redirigir al pago si todo es válido
         return redirect('showtime:pago')
 
     context = {'show': show}

@@ -67,3 +67,17 @@ plusButtons.forEach((button, index) => {
         updateQuantityDisplay(display, summaryDisplay, 1); // Aumentar en 1
     });
 });
+
+document.querySelector('form').addEventListener('submit', function (e) {
+    const quantities = Array.from(document.querySelectorAll('.quantity-input')).map(input => parseInt(input.value));
+    const totalTickets = quantities.reduce((sum, qty) => sum + qty, 0);
+    const availableSeats = parseInt(document.querySelector('#total-seats').dataset.availableSeats);
+
+    if (totalTickets === 0) {
+        e.preventDefault();
+        alert("Debes seleccionar al menos una entrada.");
+    } else if (totalTickets > availableSeats) {
+        e.preventDefault();
+        alert(`No se pueden solicitar ${totalTickets} entradas. Solo hay ${availableSeats} asientos disponibles.`);
+    }
+});
