@@ -83,7 +83,7 @@ class Ticket(models.Model):
 class Ticket_Price(models.Model):
     ticket = models.ForeignKey('Ticket', on_delete=models.CASCADE, related_name="purchased_prices")
     price = models.ForeignKey('Price', on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
+    selected_quantity = models.PositiveIntegerField()
 
     def __str__(self):
-        return f"{self.quantity} x {self.price.name} for Ticket {self.ticket.ticket_code}"
+        return f"{self.selected_quantity} x {self.price.name} for Ticket {self.ticket.ticket_code}"

@@ -17,7 +17,7 @@
     <h2>Promociones:</h2>
     <ul>
         {% for promo in ticket.purchased_prices.all %}
-            <li>{{ promo.quantity }} x {{ promo.price.name }} ({{ promo.price.amount }} c/u)</li>
+            <li>{{ promo.selected_quantity }} x {{ promo.price.name }} ({{ promo.price.amount }} c/u)</li>
         {% endfor %}
     </ul>
     <p>Presenta este código en la boletería para ingresar al cine. ¡Disfruta la película!</p>

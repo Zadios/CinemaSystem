@@ -153,10 +153,10 @@ def pago(request):
             total_price=total_price,
         )
 
-        for price_id, quantity in selected_promotions.items():
+        for price_id, selected_quantity in selected_promotions.items():
             price = get_object_or_404(Price, pk=price_id)
-            if quantity > 0:
-                Ticket_Price.objects.create(ticket=ticket, price=price, quantity=quantity)
+            if selected_quantity > 0:
+                Ticket_Price.objects.create(ticket=ticket, price=price, selected_quantity=selected_quantity)
 
         return redirect('showtime:confirmacion', ticket_code=ticket.ticket_code)
 

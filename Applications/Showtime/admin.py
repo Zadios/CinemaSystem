@@ -46,6 +46,6 @@ class TicketAdmin(admin.ModelAdmin):
 
 @admin.register(Ticket_Price)
 class TicketPriceAdmin(admin.ModelAdmin):
-    list_display = ('ticket', 'price', 'quantity')
+    list_display = ('ticket', 'price', 'selected_quantity')
     search_fields = ('ticket__ticket_code', 'price__name')
 
