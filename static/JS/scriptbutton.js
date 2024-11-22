@@ -70,7 +70,8 @@ plusButtons.forEach((button, index) => {
 
 document.querySelector('form').addEventListener('submit', function (e) {
     const quantities = Array.from(document.querySelectorAll('.quantity-input')).map(input => parseInt(input.value));
-    const totalTickets = quantities.reduce((sum, qty) => sum + qty, 0);
+    const ticketQuantities = Array.from(document.querySelectorAll('.price-bar')).map(bar => parseInt(bar.dataset.ticketQuantity));
+    const totalTickets = quantities.reduce((sum, qty, index) => sum + (qty * ticketQuantities[index]), 0); // Multiplica cantidad por entradas de cada promo
     const availableSeats = parseInt(document.querySelector('#total-seats').dataset.availableSeats);
 
     if (totalTickets === 0) {
@@ -81,3 +82,4 @@ document.querySelector('form').addEventListener('submit', function (e) {
         alert(`No se pueden solicitar ${totalTickets} entradas. Solo hay ${availableSeats} asientos disponibles.`);
     }
 });
+
