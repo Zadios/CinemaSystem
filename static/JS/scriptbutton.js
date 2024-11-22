@@ -13,6 +13,10 @@ function updateQuantityDisplay(display, summaryDisplay, increment) {
     // Actualizar la cantidad en el resumen
     summaryDisplay.textContent = newValue;
 
+    // Actualizar el valor del input oculto
+    const hiddenInput = display.closest(".price-bar").querySelector(".quantity-input");
+    hiddenInput.value = newValue; // Actualiza el valor del input oculto con la nueva cantidad
+
     // Actualizar los totales
     updateTotals();
 }
@@ -62,4 +66,18 @@ plusButtons.forEach((button, index) => {
         
         updateQuantityDisplay(display, summaryDisplay, 1); // Aumentar en 1
     });
+});
+
+document.querySelector('form').addEventListener('submit', function (e) {
+    const quantities = Array.from(document.querySelectorAll('.quantity-input')).map(input => parseInt(input.value));
+    const totalTickets = quantities.reduce((sum, qty) => sum + qty, 0);
+    const availableSeats = parseInt(document.querySelector('#total-seats').dataset.availableSeats);
+
+    if (totalTickets === 0) {
+        e.preventDefault();
+        alert("Debes seleccionar al menos una entrada.");
+    } else if (totalTickets > availableSeats) {
+        e.preventDefault();
+        alert(`No se pueden solicitar ${totalTickets} entradas. Solo hay ${availableSeats} asientos disponibles.`);
+    }
 });

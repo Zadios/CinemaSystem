@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from Applications.Movie.models import Film, Format, Language
-from .models import Show, Movie_Theater
+from django.http import HttpResponse
+from Applications.Movie.models import Film
+from .models import Show, Price, Ticket, Ticket_Price
 from datetime import date, timedelta
 from .forms import PagoForm
+from Applications.Showtime.utils import generate_ticket_code
+from django.contrib import messages
 
 def horarios(request, film_id):
     film = get_object_or_404(Film, pk=film_id)
@@ -49,32 +52,124 @@ def horarios(request, film_id):
     return render(request, 'showtime/horarios.html', context)
 
 def comprar_entradas(request, show_id):
+    # Obtener el show y asignar el show_code a la sesión
     show = get_object_or_404(Show, pk=show_id)
     
+    # Limpiar las promociones anteriores de la sesión (solo si la clave existe)
+    if request.session.get('selected_promotions') is not None:
+        request.session.pop('selected_promotions', None)
+
+    # Guardar show_id en la sesión
+    request.session['show_id'] = show.show_code
+    print(f"Show ID guardado en sesión: {request.session['show_id']}")
+
     if request.method == "POST":
-        # Lógica para manejar la selección de entradas, p.ej., almacenar en la sesión
-        # Ejemplo de almacenamiento temporal en la sesión:
-        request.session['selected_show'] = show_id
-        # Puedes almacenar más información aquí si lo necesitas.
+        print(request.POST)
         
-        # Redirigir a la página de pago
+        # Obtener las promociones seleccionadas y las cantidades
+        promociones = request.POST.getlist('promociones')
+        cantidades = request.POST.getlist('cantidades')
+
+        # Filtrar las promociones seleccionadas para guardar solo las de cantidad mayor a 0
+        selected_promotions = {}
+        total_tickets = 0
+
+        if promociones and cantidades:
+            for promo, cantidad in zip(promociones, cantidades):
+                cantidad = int(cantidad)
+                if cantidad > 0:
+                    selected_promotions[promo] = cantidad
+                    total_tickets += cantidad
+
+            # Validar si no se seleccionó ninguna entrada
+            if total_tickets == 0:
+                messages.error(request, "Debes seleccionar al menos una entrada.")
+                return render(request, 'showtime/comprar_entradas.html', {'show': show})
+
+            # Validar si el total de entradas supera los asientos disponibles
+            if total_tickets > show.available_seats:
+                messages.error(
+                    request, 
+                    f"No se pueden solicitar {total_tickets} entradas. Solo hay {show.available_seats} asientos disponibles."
+                )
+                return render(request, 'showtime/comprar_entradas.html', {'show': show})
+
+            # Guardar las promociones seleccionadas en la sesión
+            if selected_promotions:
+                request.session['selected_promotions'] = selected_promotions
+                print(f"Datos almacenados en sesión: {request.session['selected_promotions']}")
+            else:
+                print("No se seleccionaron promociones con cantidad mayor a 0")
+
+        # Redirigir al pago si todo es válido
         return redirect('showtime:pago')
-    
-    context = {
-        'show': show,
-    }
+
+    context = {'show': show}
     return render(request, 'showtime/comprar_entradas.html', context)
 
 
 def pago(request):
-    if request.method == "POST":
-        form = PagoForm(request.POST)
-        if form.is_valid():
-            # Procesar el pago aquí (ej., guardar en base de datos o enviar a una pasarela de pagos)
-            # Luego redirigir a una página de confirmación o a la vista final.
-            return redirect('showtime:confirmacion')
-    else:
-        form = PagoForm()
+    # Recuperar el show_id de la sesión
+    show_id = request.session.get('show_id')
+    if not show_id:
+        messages.error(request, "No se pudo procesar la compra. Por favor, selecciona tus entradas nuevamente.")
+        return redirect('showtime:comprar_entradas')
 
-    context = {'form': form}
+    # Obtener el objeto Show
+    show = get_object_or_404(Show, show_code=show_id)
+    print(f"Show recuperado: {show}")
+
+    # Recuperar promociones seleccionadas de la sesión
+    selected_promotions = request.session.get('selected_promotions', {})
+
+    # Procesar POST
+    if request.method == "POST":
+        promociones = request.POST.getlist('promociones[]')
+        cantidades = request.POST.getlist('cantidades[]')
+        print(f'Promociones: {promociones}')
+        print(f'Cantidades: {cantidades}')
+
+        for promo_id, cantidad in zip(promociones, cantidades):
+            selected_promotions[promo_id] = int(cantidad)
+
+        request.session['selected_promotions'] = selected_promotions
+        print(f"Promociones actualizadas en sesión: {selected_promotions}")
+
+    form = PagoForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        total_tickets = 0
+        total_price = 0
+        for price_id, quantity in selected_promotions.items():
+            price = get_object_or_404(Price, pk=price_id)
+            total_tickets += price.ticket_quantity * quantity
+            total_price += price.amount * quantity
+
+        ticket_code = generate_ticket_code()
+        ticket = Ticket.objects.create(
+            ticket_code=ticket_code,
+            show=show,
+            total_tickets=total_tickets,
+            total_price=total_price,
+        )
+
+        for price_id, selected_quantity in selected_promotions.items():
+            price = get_object_or_404(Price, pk=price_id)
+            if selected_quantity > 0:
+                Ticket_Price.objects.create(ticket=ticket, price=price, selected_quantity=selected_quantity)
+
+        return redirect('showtime:confirmacion', ticket_code=ticket.ticket_code)
+
+    context = {'form': form, 'show': show}
     return render(request, 'showtime/pago.html', context)
+
+def confirmacion(request, ticket_code):
+    try:
+        ticket = Ticket.objects.get(ticket_code=ticket_code)
+    except Ticket.DoesNotExist:
+        return HttpResponse("Ticket no encontrado", status=404)
+    
+    request.session.pop('selected_promotions', None)
+    request.session.pop('show_id', None)
+    
+    return render(request, 'showtime/confirmacion.html', {'ticket': ticket})
