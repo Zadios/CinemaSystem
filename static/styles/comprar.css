@@ -33,11 +33,31 @@
 }
 
 /*col-gris*/
+/* Scroll vertical para col-md-9 */
 .col-cont {
     background-color: rgba(45, 45, 45, 1);
     border-radius: 5px;
     padding: 20px 0px 0px 0px;
     width: 74%;
+    max-height: 500px; /* Ajusta este valor según la altura deseada */
+    overflow-y: auto; /* Activa el desplazamiento vertical */
+    overflow-x: hidden; /* Desactiva el desplazamiento horizontal */
+    scrollbar-width: thin; /* Para navegadores compatibles */
+    scrollbar-color: rgba(176, 184, 204, 1) transparent; /* Opcional */
+}
+
+/* Estilos para la barra de desplazamiento en navegadores Webkit */
+.col-cont::-webkit-scrollbar {
+    width: 8px;
+}
+
+.col-cont::-webkit-scrollbar-thumb {
+    background: rgba(176, 184, 204, 1);
+    border-radius: 4px;
+}
+
+.col-cont::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 /*estilos de seleccionar formato e idioma*/
@@ -138,7 +158,7 @@ iframe {
     .col-md-3,
     .col-md-9 {
         flex: 1; /* Hace que ambas columnas ocupen el mismo ancho */
-        max-width: 50%;
+        max-width: 49%;
     }    
     .form-select {
         max-width: 100%;
