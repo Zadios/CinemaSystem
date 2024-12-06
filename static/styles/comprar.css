@@ -16,7 +16,9 @@
 .image-container {
     height: 90%;
 }
-
+.image-container img {
+    border-radius: 6.11px;
+}
 /*espacio para las categorias*/
 .text-container {
     height: 10%;
@@ -39,11 +41,11 @@
     border-radius: 5px;
     padding: 20px 0px 0px 0px;
     width: 74%;
-    max-height: 500px; /* Ajusta este valor según la altura deseada */
-    overflow-y: auto; /* Activa el desplazamiento vertical */
-    overflow-x: hidden; /* Desactiva el desplazamiento horizontal */
-    scrollbar-width: thin; /* Para navegadores compatibles */
-    scrollbar-color: rgba(176, 184, 204, 1) transparent; /* Opcional */
+    max-height: 500px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    scrollbar-width: thin; 
+    scrollbar-color: rgba(176, 184, 204, 1) transparent; 
 }
 
 /* Estilos para la barra de desplazamiento en navegadores Webkit */
