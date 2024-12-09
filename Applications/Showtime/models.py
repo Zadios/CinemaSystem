@@ -18,6 +18,15 @@ class Price(models.Model):
     name = models.CharField('Nombre de la Promoción', max_length=100)
     amount = models.PositiveIntegerField('Precio')
     ticket_quantity = models.PositiveIntegerField('Cantidad de entradas')
+    description = models.CharField('Descripción', max_length=100, default="Descripción")
+    image = models.ImageField(
+        'Imagen',
+        upload_to='promoIMG/',
+        null=True,
+        blank=True,
+        default='promoIMG/CinemaRoyale.png'
+    )
+
 
     class Meta:
         verbose_name = 'Precio'
@@ -31,7 +40,7 @@ class Show(models.Model):
     show_code = models.AutoField(primary_key=True)
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
     movie_theater = models.ForeignKey(Movie_Theater, on_delete=models.CASCADE)
-    available_seats = models.PositiveIntegerField(default=0)  # Campo para asientos disponibles
+    available_seats = models.PositiveIntegerField(default=0)
     show_date = models.DateField()
     show_time = models.TimeField()
     prices = models.ManyToManyField(Price)

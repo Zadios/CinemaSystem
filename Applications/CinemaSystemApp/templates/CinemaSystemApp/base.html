@@ -41,9 +41,8 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                             <a class="nav-link" href="{%url 'movie:index' %}">Cartelera</a>
-                            <a class="nav-link" href="#">Anticipadas</a>
-                            <a class="nav-link" href="#">Promociones</a>
-                            <a class="nav-link" href="#">Información</a>
+                            <a class="nav-link" href="{%url 'movie:estrenos' %}">Próximamente</a>
+                            <a class="nav-link" href="{%url 'showtime:promociones' %}">Promociones</a>
                         </div>
                         <div class="navbar-nav ms-auto">
                             <a class="nav-link" href="{%url 'login-register:login' %}">Mi Cuenta</a>
@@ -73,7 +72,7 @@
                 </div>
                 <div class="box">
                     <h2>Contacto:</h2>
-                    <h4>CinemaRoyal@cinemaroyal.com</h4>
+                    <h4>cinemaroyale@cinemaroyale.com</h4>
                     <div class="red-social">
                         <a href="#"><img src="{% static 'img/icons/facebook.svg' %}" alt="Facebook"></a>
                         <a href="#"><img src="{% static 'img/icons/x-twitter.svg' %}" alt="X"></a>

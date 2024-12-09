@@ -173,3 +173,7 @@ def confirmacion(request, ticket_code):
     request.session.pop('show_id', None)
     
     return render(request, 'showtime/confirmacion.html', {'ticket': ticket})
+
+def promociones(request):
+    prices = Price.objects.all()
+    return render(request, 'showtime/promociones.html', {'prices': prices})
