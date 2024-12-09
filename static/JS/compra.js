@@ -92,10 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Video de YouTube
-// Obtén el enlace completo del video desde el atributo de datos en el contenedor
-const videoContainer = document.getElementById('video-container');
-const videoLink = videoContainer.getAttribute('data-video-link');
-
 // Función para extraer el ID del video de un enlace de YouTube
 function extractYouTubeID(url) {
     const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
@@ -103,16 +99,24 @@ function extractYouTubeID(url) {
     return match ? match[1] : null;
 }
 
-const videoId = extractYouTubeID(videoLink);
+// Selecciona todos los contenedores de videos
+const videoContainers = document.querySelectorAll('#video-container');
 
-// Crear el iframe solo si hay un ID de video válido
-if (videoId) {
-    const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube.com/embed/${videoId}`;
-    iframe.classList.add("embed-responsive-item");
-    iframe.setAttribute("allowfullscreen", "");
-    videoContainer.appendChild(iframe);
-} else {
-    console.error("No se pudo obtener un ID de video válido de YouTube.");
-}
+// Itera sobre cada contenedor de video y agrega un iframe si el enlace es válido
+videoContainers.forEach(videoContainer => {
+    const videoLink = videoContainer.getAttribute('data-video-link');
+    const videoId = extractYouTubeID(videoLink);
+
+    // Crear el iframe solo si hay un ID de video válido
+    if (videoId) {
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube.com/embed/${videoId}`;
+        iframe.classList.add("embed-responsive-item");
+        iframe.setAttribute("allowfullscreen", "");
+        videoContainer.appendChild(iframe);
+    } else {
+        console.error("No se pudo obtener un ID de video válido de YouTube.");
+    }
+});
+
 

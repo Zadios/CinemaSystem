@@ -81,7 +81,7 @@
     }
     .card-img {
         flex: 0 0 110px; 
-        height: 100px; 
+        height: 100%; 
         
     }
 }

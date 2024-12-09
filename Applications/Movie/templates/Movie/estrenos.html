@@ -1,0 +1,65 @@
+{% extends 'CinemaSystemApp/base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'styles/estrenos.css' %}">
+{% endblock %}
+
+{% block title %}Próximamente{% endblock %}
+
+{% block content %}
+
+{% for film in films %}
+{% if film.upcoming_releases %}
+<div class="container my-5">
+    <div>
+        <h2 class="text-start title-sinopsis">{{ film.name }}</h2>
+        <p>Estreno: {{ film.release_date }}</p>    
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            <div class="image-container">
+                <img src="{{ film.image.url }}" class="img-fluid img-poster" alt="Imagen portada">
+            </div>
+        </div>
+
+        <div class="col-auto custom-hide">
+            <section>
+                <h3 class="title-sinopsis">Sinopsis</h3>
+                <p>{{ film.synopsis }}</p>
+            </section>        
+        </div>
+
+        <div class="col-md-9 col-sm-9 col-cont">
+
+            <div class="col">
+                <div id="video-container" class=" centrar embed-responsive embed-responsive-16by9" data-video-link="{{ film.trailer_link }}"></div>
+            </div>
+                
+        </div>
+    </div>
+    
+</div>
+
+<div class="container">
+    <section class="sinopsis">
+        <h4>Sinopsis</h4>
+        <p>{{ film.synopsis }}</p>
+    </section>
+
+    <!-- Linea recta -->
+    {% if not forloop.last %}
+    <hr class="custom-hr">
+    {% endif %}
+    <!-- ----------- -->
+
+</div>
+
+<!-- HASTA ACA -->
+{% endif %}
+{% endfor %}
+
+{% block scripts %}
+<script src="{% static 'JS/compra.js' %}"></script>
+{% endblock %}
+{% endblock %}
