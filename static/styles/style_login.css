@@ -11,6 +11,7 @@
 }
 
 .titulo-beneficios {
+    margin: 0px;
     font-size: 32px;
     font-weight: 400;
     text-align: center;
@@ -34,13 +35,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    padding: 20px;
     margin-right: auto;
+    padding: 0px 20px;
     background-color: #000000;
     color: #ffffff; 
     border-radius: 10px;
     width: 100%;
-    max-width: 630px; 
+    max-width: 600px; 
 }
 
 /* Formulario dentro de la columna izquierda */
@@ -117,51 +118,33 @@
     border-radius: 10px;
     padding: 20px;
     width: 100%; 
-    max-width: 630px;
+    max-width: 600px;
     min-height: 670px;
     margin-left: auto;
 }
 
-/* Estilos de cada beneficio */
-.beneficio {
-    display: flex;
-   
+.benefit .col-3 {
+    background-color: rgba(98, 98, 98, 1);
+    border-radius: 0px 8px 8px 0px;
 }
 
-.beneficio img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    margin-right: 15px;
+.benefit img{
+   padding: 10px;
 }
 
-.beneficio .titulo-beneficio {
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.beneficio .descripcion-beneficio {
-    font-size: 16px;
-    font-weight: 400;
-}
-
-/* Media Queries*/
-@media (max-width: 1200px) {
-    
+@media (max-width: 1400px) {
     .contenedor-bienvenidos-registro,
     .contenedor-beneficios {
         margin: auto;
         width: 100%; 
-        max-width: 630px;
+        max-width: 600px;
      
     }
 }
 
-@media (min-width: 1201px) {
-    /* Para pantallas grandes.. columnas horizontalmente */
-    .contenedor-bienvenidos-registro,
-    .contenedor-beneficios {
-        flex: 1; /* Ambas columnas comparten el espacio disponible */
-        max-width: 630px; 
-    }
+
+@media (max-width: 768px) {
+    .benefit img{
+        padding: 20px;
+     }
 }

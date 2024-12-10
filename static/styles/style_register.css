@@ -5,6 +5,7 @@
 }
 
 .titulo-beneficios {
+    margin: 0px;
     font-size: 32px;
     font-weight: 400;
     text-align: center;
@@ -73,33 +74,22 @@
     border-radius: 10px;
     padding: 20px;
     width: 100%; 
-    max-width: 630px;
+    max-width: 600px;
     min-height: 670px;
     margin-left: auto;
 }
 
 /* Estilos de cada beneficio */
-.beneficio {
-    display: flex;
-   
+
+.benefit .col-3 {
+    background-color: rgba(98, 98, 98, 1);
+    border-radius: 0px 8px 8px 0px;
 }
 
-.beneficio img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    margin-right: 15px;
+.benefit img{
+   padding: 10px;
 }
 
-.beneficio .titulo-beneficio {
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.beneficio .descripcion-beneficio {
-    font-size: 16px;
-    font-weight: 400;
-}
 
 /* Media Query para pantallas menores a 1400px */
 @media (max-width: 1400px) {
@@ -110,7 +100,6 @@
         justify-content: center; /* Centra verticalmente */
         align-items: center; /* Centra horizontalmente */
         margin: 20px auto; /* Centra los contenedores en la página */
-        width: 90%; /* Ajusta el ancho relativo */
     }
 
     .contenedor-bienvenidos-registro h1,
@@ -125,26 +114,17 @@
     }
 
     .contenedor-beneficios {
-        height: auto; /* Ajusta la altura según el contenido */
-        max-width: 550px;
-        padding: 20px; /* Añade un espaciado interno */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(148, 148, 148, 1); 
+        border-radius: 10px;
+        width: 100%; 
+        max-width: 600px;
+        min-height: 670px;
+        margin-left: auto;
     }
-
-    .benefits-box h1,
-    .benefits-box h2 {
-        font-size: 24px; /* Reduce el tamaño de los textos */
-    }
-
-    .benefit img {
-        width: 80%; /* Ajusta el ancho de las imágenes */
-        max-width: 200px; /* Limita el tamaño máximo */
-    }
-
-    .col-9 h3,
-    .col-9 p {
-        text-align: start; /* Centraliza los textos */
-        max-width: 100%; /* Ocupa todo el ancho disponible */
-    }
+    
 }
 
 /* Media Queries para pantallas pequeñas */
@@ -154,9 +134,6 @@
         display: flex;  /* Asegúrate de que el contenedor sea flex */
         flex-direction: column;  /* Mantener la dirección de flexión como columna */
         align-items: center;  /* Centrar los elementos horizontalmente */
-        padding: 10px;  /* Espaciado interior */
-        margin-top: 20px;  /* Centrar el contenedor en la pantalla */
-        width: 90%;
     }
 
     .contenedor-bienvenidos-registro h1 {
@@ -173,16 +150,7 @@
     .form-group input{
         width: 100%;  /* Usar 100% del ancho */
     }
-
-    .benefits-box h1 {
-        font-size: 28px;
-    }
-
-    .benefits-box h2 {
-        font-size: 24px;
-    }
-
-    .col-9 p {
-        font-size: 14px;
+    .benefit img{
+        padding: 20px;
     }
 }
