@@ -9,23 +9,25 @@
 
 {% block content %}
 
+<h2 class="container mt-5 title-movie text-start">Proximos Estrenos</h2>
+
 {% for film in films %}
 {% if film.upcoming_releases %}
 <div class="container my-5">
     <div>
         <h2 class="text-start title-sinopsis">{{ film.name }}</h2>
-        <p>Estreno: {{ film.release_date }}</p>    
     </div>
     <div class="row">
         <div class="col-md-3 col-sm-3">
             <div class="image-container">
                 <img src="{{ film.image.url }}" class="img-fluid img-poster" alt="Imagen portada">
             </div>
+            <p class="mt-2">Estreno: {{ film.release_date }}</p>    
         </div>
 
         <div class="col-auto custom-hide">
             <section>
-                <h3 class="title-sinopsis">Sinopsis</h3>
+                <h3 class="title-sinopsis mt-2">Sinopsis</h3>
                 <p>{{ film.synopsis }}</p>
             </section>        
         </div>

@@ -14,7 +14,10 @@
 
 /*largo de la imagen*/
 .image-container {
-    height: 90%;
+    aspect-ratio: 27 / 40;
+    width: 100%;  
+    height: 90%; 
+    overflow: hidden;
 }
 .image-container img {
     border-radius: 6.11px;

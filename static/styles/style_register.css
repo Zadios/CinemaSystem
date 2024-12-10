@@ -3,6 +3,25 @@
     font-size: 32px;
     font-weight: 700;
 }
+
+.titulo-beneficios {
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.titulo-beneficio {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.descripcion-beneficio {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+}
+
 .contenedor-bienvenidos-registro {
     display: flex;
     flex-direction: column;
@@ -45,36 +64,41 @@
     border-radius: 10px;
 }
 
-/* Estilos para el contenedor de beneficios */
+/* Columna derecha: Beneficios */
 .contenedor-beneficios {
-    height: 670px;
-    flex-shrink: 0;
-    border-radius: 8px;
-    background: rgba(148, 148, 148, 1);
-    margin-top: 24px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(148, 148, 148, 1); 
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%; 
+    max-width: 630px;
+    min-height: 670px;
+    margin-left: auto;
 }
 
-.benefits-box h1,
-.benefits-box h2 {
-    color: #FFF;
-    text-align: center;
+/* Estilos de cada beneficio */
+.beneficio {
+    display: flex;
+   
 }
 
-.benefit img {
-    max-width: 100%;
-    height: auto;
+.beneficio img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
 }
 
-.col-9 h3 {
-    color: #FFF;
+.beneficio .titulo-beneficio {
     font-size: 16px;
     font-weight: 700;
 }
 
-.col-9 p {
-    color: #FFF;
+.beneficio .descripcion-beneficio {
     font-size: 16px;
-    max-width: 400px;
+    font-weight: 400;
 }
 
 /* Media Query para pantallas menores a 1400px */

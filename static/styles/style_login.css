@@ -1,176 +1,167 @@
+/* Estilos para los títulos*/
+.titulo-bienvenida {
+    font-size: 32px;
+    font-weight: 700;
+}
 
-/* Contenedor del formulario de registro */
+.subtitulo-bienvenida {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.titulo-beneficios {
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.titulo-beneficio {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.descripcion-beneficio {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+}
+
+/* Columna izquierda: Registro */
 .contenedor-bienvenidos-registro {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    gap: 20px;
-    flex-shrink: 0;
+    padding: 20px;
+    margin-right: auto;
+    background-color: #000000;
+    color: #ffffff; 
+    border-radius: 10px;
+    width: 100%;
+    max-width: 630px; 
 }
 
+/* Formulario dentro de la columna izquierda */
+.contenedor-bienvenidos-registro form {
+    width: 100%; 
+    max-width: 600px;
+}
+
+/* Estilo de los inputs */
 .form-group label {
-    color: white;
+    color: #ffffff; 
     font-size: 20px;
     font-weight: 600;
 }
 
-.form-group input {
-    width: 560px;
-    height: 50px;
-    flex-shrink: 0;
-    border-radius: 10px;
+.custom-input {
+    height: 55px;
+    font-size: 16px;
     padding: 10px;
-    background: #000;
-    color: rgba(167, 167, 167, 1);
     border: 2px solid rgba(167, 167, 167, 1);
-}
-
-/* Botón de registro */
-.btn-dark h2,.btn-outline-dark h2 {
-    color: #FFF;
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
-}
-
-.btn-dark,.btn-outline-dark {
-    width: 560px;
-    height: 75px;
-    flex-shrink: 0;
     border-radius: 10px;
-    color: #000;
-    background: white;
+    background-color: #000000; 
+    color: rgba(167, 167, 167, 1);
+}
+
+.custom-input:focus {
+    border-color: #505254;
+    box-shadow: 0 0 5px rgba(211, 212, 213, 0.5);
+    outline: none;
+}
+
+/* Botones */
+.btn-ingresar {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 100%; 
+    height: 75px;
+}
+
+.btn-ingresar:hover {
+    background-color: #3e3e3e;
+    color: #ffffff;
+}
+
+.btn-registrar {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #ffffff;
+    border-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+    height: 75px;
+}
+
+.btn-registrar:hover {
+    background-color: #3e3e3e;
+    color: #ffffff;
+}
+
+/* Columna derecha: Beneficios */
+.contenedor-beneficios {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(148, 148, 148, 1); 
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%; 
+    max-width: 630px;
+    min-height: 670px;
+    margin-left: auto;
+}
+
+/* Estilos de cada beneficio */
+.beneficio {
+    display: flex;
    
 }
-.btn-outline-dark {
-    color: white;
-    background-color: transparent;
-    border: 2px solid #FFFFFF;
-}
-/* Contenedor del formulario de registro */
 
-
-/* Estilos para el contenedor de beneficios */
-.contenedor-beneficios {
-    height: 670px;
-    flex-shrink: 0;
-    border-radius: 8px;
-    background: #949494;
-    margin-top: 24px;
-    
+.beneficio img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
 }
 
-.benefits-box h1,
-.benefits-box h2 {
-    color: #FFF;
-    text-align: center;
-    
-}
-
-.benefit img {
-    max-width: 100%;
-    height: auto;
-}
-
-.col-9 h3 {
-    color: #FFF;
+.beneficio .titulo-beneficio {
     font-size: 16px;
     font-weight: 700;
 }
 
-.col-9 p {
-    color: #FFF;
+.beneficio .descripcion-beneficio {
     font-size: 16px;
-    max-width: 400px;
+    font-weight: 400;
 }
 
-/* Media Queries para pantallas pequeñas */
-
-@media (max-width: 768px) {
+/* Media Queries*/
+@media (max-width: 1200px) {
+    
     .contenedor-bienvenidos-registro,
     .contenedor-beneficios {
-        display: flex;  /* Asegúrate de que el contenedor sea flex */
-        flex-direction: column;  /* Mantener la dirección de flexión como columna */
-        align-items: center;  /* Centrar los elementos horizontalmente */
-        padding: 10px;  /* Espaciado interior */
-        margin-top: 20px;  /* Centrar el contenedor en la pantalla */
-    }
-
-    .contenedor-bienvenidos-registro h1 {
-        font-size: 28px;
-    }
-
-    .contenedor-bienvenidos-registro p,
-    .form-group label,
-    .btn-dark h2,
-    .mt-2 p,
-    .mt-2 a {
-        font-size: 16px;
-    }
-
-    .form-group input,
-    .btn-dark,
-    .btn-outline-dark {
-        width: 100%;  /* Usar 100% del ancho */
-        max-width: none;  /* Desactivar cualquier limitación de ancho */
-    }
-    
-    .btn-dark {
-        width: 100%;  /* Ancho fijo para el botón */
-        height: 50px;  /* Altura fija para el botón */
-    }
-
-    .btn-outline-dark {
-        width: 100%;  /* Ancho fijo para el segundo botón */
-        height: 50px;  /* Altura fija para el segundo botón */
-    }
-
-    .benefits-box h1 {
-        font-size: 28px;
-    }
-
-    .benefits-box h2 {
-        font-size: 24px;
-    }
-
-    .col-9 p {
-        font-size: 14px;
+        margin: auto;
+        width: 100%; 
+        max-width: 630px;
+     
     }
 }
 
-/* Media Queries para pantallas extra pequeñas */
-@media (max-width: 576px) {
+@media (min-width: 1201px) {
+    /* Para pantallas grandes.. columnas horizontalmente */
     .contenedor-bienvenidos-registro,
     .contenedor-beneficios {
-        align-items: center;
-        margin-top: 10px;
-    }
-    
-    .benefits-box {
-        text-align: center;
-    }
-
-    .benefit img {
-        width: 100px;
-        height: auto;
-        margin: 0 auto;
-    }
-
-    .btn-dark {
-        width: 100%;
-        height: 50px;
-    }
-
-    .btn-outline-dark {
-        width: 100%;  /* Ancho fijo para el segundo botón */
-        height: 50px;  /* Altura fija para el segundo botón */
-    }
-
-    .col-9 p,
-    .col-9 h3 {
-        text-align: center;
-        max-width: 100%;
+        flex: 1; /* Ambas columnas comparten el espacio disponible */
+        max-width: 630px; 
     }
 }
-
