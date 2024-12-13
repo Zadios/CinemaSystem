@@ -29,7 +29,7 @@
                 </div>
             {% endif %}
             
-            <form method="POST" action="{% url 'login-register:register' %}">
+            <form method="POST" action="{% url 'register:register' %}">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="email">Correo electrónico</label>
@@ -44,7 +44,7 @@
                     {{ form.password2 }}  <!-- Campo para la confirmación de contraseña -->
                 </div>
                 <button type="submit" class="btn btn-light mt-4">Registrar cuenta</button>
-                <p class="mt-2" style="font-size: 20px;">¿Ya tienes una cuenta? <a href="{% url 'login-register:login' %}">Ingresa aquí</a></p>
+                <p class="mt-2" style="font-size: 20px;">¿Ya tienes una cuenta? <a href="{% url 'register:login' %}">Ingresa aquí</a></p>
             </form>
         </div>
 
@@ -93,12 +93,3 @@
     </div>
 </div>
 {% endblock %}
-
-
-
-
-
-
-
-
-

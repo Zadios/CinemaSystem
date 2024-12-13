@@ -23,8 +23,7 @@
 }
 
 .tarjeta {
-    background-color: rgba(98, 98, 98, 1);
-    ;
+    background-color: rgba(45, 45, 45, 1);
     display: flex;
     width: calc(50% - 15px); /* Ocupa la mitad del ancho del contenedor, con espacio entre tarjetas */
     border-radius: 8px;

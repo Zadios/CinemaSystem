@@ -55,6 +55,8 @@
     color: #ffffff; 
     font-size: 20px;
     font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .custom-input {
@@ -65,6 +67,7 @@
     border-radius: 10px;
     background-color: #000000; 
     color: rgba(167, 167, 167, 1);
+    width: 100%;
 }
 
 .custom-input:focus {

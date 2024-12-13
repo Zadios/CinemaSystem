@@ -1,10 +1,14 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from .models import Users
 from django.contrib.auth.forms import AuthenticationForm  # Importación correcta
+from .models import Users
+from django.contrib.auth.models import User
 
 
 class UsersCreationForm(forms.ModelForm):
+    email = forms.CharField(
+        label='Correo electrónico',
+        widget=forms.EmailInput(attrs={'placeholder': 'Ingresar correo'}),
+    )
     password1 = forms.CharField(
         label='Contraseña',
         widget=forms.PasswordInput(attrs={'placeholder': 'Ingresa una contraseña'}),
@@ -18,7 +22,7 @@ class UsersCreationForm(forms.ModelForm):
 
     class Meta:
         model = Users
-        fields = ['email']  # Solo estamos incluyendo el campo email, asegúrate de que esté aquí
+        fields = ['email']  # Solo estamos incluyendo el campo email
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -35,16 +39,25 @@ class UsersCreationForm(forms.ModelForm):
             raise forms.ValidationError("Las contraseñas no coinciden.")
         return cleaned_data
 
+    def save(self, commit=True):
+        # Guardamos el usuario y luego establecemos la contraseña de forma segura
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])  # Establecer la contraseña de manera segura
+        if commit:
+            user.save()
+        return user
 
-class CustomAuthenticationForm(AuthenticationForm):
-    """Formulario de autenticación personalizado."""
-    
-    username = forms.EmailField(label='Email', max_length=254)
 
-    def clean(self):
-        """Verifica las credenciales del usuario."""
-        super().clean()
-        # Puedes agregar validaciones adicionales aquí si lo deseas
+class LoginForm(forms.Form):
+    username = forms.EmailField(
+        label='Correo electrónico', 
+        max_length=254, 
+        widget=forms.EmailInput(attrs={'placeholder': 'Ingresar correo', 'class': 'custom-input'})
+    )
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Ingresar contraseña', 'class': 'custom-input'}))
+
+
+
 
 
 

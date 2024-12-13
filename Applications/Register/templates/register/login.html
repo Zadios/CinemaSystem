@@ -12,17 +12,30 @@
         <div class="col-md-6 contenedor-bienvenidos-registro">
             <h1 class="titulo-bienvenida">¡Hola de nuevo!</h1>
             <p class="subtitulo-bienvenida my-4">Ingresa colocando los datos que usaste durante tu registro</p>
-            <form>
+            <form method="POST" action="{% url 'register:login' %}">
+                {% csrf_token %}
+
                 <div class="form-group">
-                    <label for="email" class="mt-2">Correo electrónico</label>
-                    <input type="email" class="form-control custom-input" id="email" placeholder="ejemplo@correo.com">
+                    <label for="{{ form.username.id_for_label }}" class="mt-2">Correo electrónico</label>
+                    {{ form.username }}
                 </div>
+
                 <div class="form-group mt-3">
-                    <label for="password" class="mt-2">Contraseña</label>
-                    <input type="password" class="form-control custom-input" id="password" placeholder="Ingrese su contraseña">
+                    <label for="{{ form.password.id_for_label }}" class="mt-2">Contraseña</label>
+                    {{ form.password }}
                 </div>
+
+                <!-- Mostrar errores si los hay -->
+                {% if messages %}
+                    <div class="error" style="color: red; font-size: 16px;">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
                 <button type="submit" class="btn btn-dark btn-ingresar">Ingresar</button>
-                <a class="btn btn-outline-dark btn-block btn-registrar mb-5" href="{% url 'login-register:register' %}">Regístrate aquí</a>
+                <a class="btn btn-outline-dark btn-block btn-registrar mb-5" href="{% url 'register:register' %}">Regístrate aquí</a>
             </form>
         </div>
         
