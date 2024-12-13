@@ -26,6 +26,7 @@ urlpatterns = [
     path('register/', include('Applications.Register.urls')),
     path('horarios/', include('Applications.Showtime.urls', namespace='showtime_horarios')),
     path('', include('Applications.Showtime.urls', namespace='showtime_comprar_entradas')),
+    path('', include('Applications.Adminpanel.urls')),
 ]
 
 if settings.DEBUG:

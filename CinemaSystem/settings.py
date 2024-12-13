@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Applications.Movie',
     'Applications.Register',
     'Applications.Showtime',
+    'Applications.Adminpanel',
 ]
 
 MIDDLEWARE = [

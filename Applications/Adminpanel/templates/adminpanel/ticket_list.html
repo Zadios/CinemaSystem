@@ -1,0 +1,57 @@
+{% extends 'CinemaSystemApp/base.html' %}
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'styles/admin-tickets.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Lista de Tickets</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código del Ticket</th>
+                    <th>Show (Función)</th>
+                    <th>Cantidad</th>
+                    <th>Total Pagado</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.ticket_code }}</td>
+                    <td>{{ ticket.show }}</td>
+                    <td>{{ ticket.total_tickets }}</td>
+                    <td>${{ ticket.total_price }}</td>
+                    <td>
+                        {% if ticket.status %}
+                            <span style="color: green;">✔</span>
+                        {% else %}
+                            <span style="color: red;">X</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <!-- Botón para marcar como entregado -->
+                        <form action="{% url 'adminpanel:mark_as_delivered' ticket.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="mark-delivered">Entregar</button>
+                        </form>
+                        <!-- Botón para eliminar -->
+                        <form action="{% url 'adminpanel:delete_ticket' ticket.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="delete">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+
+{% endblock %}
+
+
+
