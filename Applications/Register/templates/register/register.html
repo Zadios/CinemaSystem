@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-6 contenedor-bienvenidos-registro">
             <h1 class="titulo-welcome">¡Bienvenid@ a Holiday Cinemas!</h1>
-            <p class="font-weight-normal" style="font-size: 20px;">Regístrate colocando tus datos en los campos de abajo</p>
+            <p class="subtitulo-bienvenida">Regístrate colocando tus datos en los campos de abajo</p>
             
             <!-- Mostrar errores del formulario -->
             {% if form.errors %}
@@ -44,7 +44,7 @@
                     {{ form.password2 }}  <!-- Campo para la confirmación de contraseña -->
                 </div>
                 <button type="submit" class="btn btn-light mt-4">Registrar cuenta</button>
-                <p class="mt-2" style="font-size: 20px;">¿Ya tienes una cuenta? <a href="{% url 'register:login' %}">Ingresa aquí</a></p>
+                <p class="mt-2 subtitulo-bienvenida">¿Ya tienes una cuenta? <a href="{% url 'register:login' %}">Ingresa aquí</a></p>
             </form>
         </div>
 
