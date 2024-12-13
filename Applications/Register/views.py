@@ -1,32 +1,76 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .forms import CustomUserCreationForm, CustomAuthenticationForm
+from .forms import UsersCreationForm
+from .models import Users, CustomUser
+from django.http import HttpResponse
+from .forms import LoginForm
+from django.contrib.auth.hashers import check_password 
 
 def register_view(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = UsersCreationForm(request.POST)  # Asegúrate de usar UsersCreationForm aquí
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)  # No guardamos el usuario aún
+            user.set_password(form.cleaned_data['password1'])  # Llamamos a set_password
+            user.save()  # Guardamos el usuario
             messages.success(request, 'Cuenta creada exitosamente. Inicie sesión.')
-            return redirect('login')
+            return redirect("register:login")
     else:
-        form = CustomUserCreationForm()
+        form = UsersCreationForm()  # Y aquí también
     return render(request, 'register/register.html', {'form': form})
+
 
 def login_view(request):
     if request.method == 'POST':
-        form = CustomAuthenticationForm(request, data=request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=email, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('pelicula-list')
-            else:
-                messages.error(request, 'Email o contraseña incorrectos.')
+            email = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            
+            # Intentar autenticar al usuario en CustomUser
+            try:
+                # Primero, buscamos el usuario en CustomUser
+                user = CustomUser.objects.get(email=email)
+                if user.check_password(password):  # Verificamos la contraseña
+                    login(request, user)  # Iniciamos sesión
+                    return redirect('movie:index')  # Redirigir al índice
+                else:
+                    messages.error(request, 'Contraseña incorrecta.')
+            except CustomUser.DoesNotExist:
+                # Si no encontramos el usuario en CustomUser, buscamos en Users
+                try:
+                    user = Users.objects.get(email=email)
+                    if user.check_password(password):  # Verificamos la contraseña
+                        # Iniciamos sesión manualmente
+                        login(request, user)  # Aunque 'Users' no tiene autenticación nativa
+                        return redirect('movie:index')  # Redirigir al índice
+                    else:
+                        messages.error(request, 'Contraseña incorrecta.')
+                except Users.DoesNotExist:
+                    messages.error(request, 'No se encontró un usuario con ese correo.')
+            
     else:
-        form = CustomAuthenticationForm()
+        form = LoginForm()  # Si no es POST, mostramos el formulario vacío
+
     return render(request, 'register/login.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

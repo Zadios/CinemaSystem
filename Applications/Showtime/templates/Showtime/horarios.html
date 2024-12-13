@@ -1,0 +1,122 @@
+{% extends 'CinemaSystemApp/base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'styles/comprar.css' %}">
+{% endblock %}
+
+{% block title %}Horarios | {{film.name}}{% endblock %}
+
+{% block content %}
+<div id="horarios-data" data-horarios='{
+    {% for date, shows in horarios_por_fecha.items %}
+        "{{ date }}": [
+            {% for show in shows %}
+                {"show_time": "{{ show.show_time }}", "show_id": "{{ show.show_code }}"}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        ]{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+}'></div>
+
+
+
+
+<div class="container my-4">
+    <div>
+        <h2 class="text-center title-movie">{{ film.name }}</h2>   
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            <div class="image-container">
+                <img src="{{ film.image.url }}" class="img-fluid img-poster" alt="Imagen portada">
+            </div>
+            <div class="text-container my-2">
+                {% for genre in film.genres.all %}
+                <p class="text-light background-p">{{ genre.name }}</p>
+                {% endfor %}
+                <p class="text-light background-p">{{ film.duration }} min</p>
+            </div>
+        </div>
+
+
+        <div class="col-md-9 col-sm-9 col-cont">
+
+            <div>
+                
+                <div class="mb-3">
+                    <div class="row ms-3">
+                    <!-- Selección de formato -->
+                        <div class="col-md-4 col-sm-12">
+                            <select id="format-select" name="format" class="form-select" aria-label="Selecciona el formato">
+                                <option selected disabled>Selecciona el formato</option>
+                                {% for format in formats %}
+                                    <option value="{{ format.id_format }}" {% if format.id_format|stringformat:"s" == selected_format %}selected{% endif %}>{{ format.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Selección de idioma -->
+                        <div class="col-md-4 col-sm-12">
+                            <select id="language-select" name="language" class="form-select" aria-label="Selecciona el idioma">
+                                <option selected disabled>Selecciona el idioma</option>
+                                {% for language in languages %}
+                                    <option value="{{ language.id_language }}" {% if language.id_language|stringformat:"s" == selected_language %}selected{% endif %}>{{ language.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <h5 class="title-horarios">Días</h5>
+                    <div class="row ms-3" id="day-buttons">
+                        <!-- Botones de los días -->
+                        {% for day in days %}
+                        <button type="button" 
+                                class="btn btn-outline-light bt-box text-center day-button" 
+                                data-day="{{ day|date:"Y-m-d" }}">
+                            {{ day | date:"l" | capfirst }} {{ day | date:"d/m" }}
+                        </button>
+                        {% endfor %}
+                    
+                    </div>
+                </div>
+                    
+                <div class="mb-3">
+                    <h5 class="title-horarios" id="schedule-title">Horarios disponibles</h5>
+                    <div id="schedule-container" class="row ms-4 overflow-auto">
+                        <!-- botones de horarios dinámicos con java -->
+                    </div>
+                </div>
+                
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="d-grid gap-2 mb-3">
+            <a class="btn btn-red text-white" href="#">Comprar Entradas</a>
+        </section>
+    </div>
+</div>
+
+<!-- Sinopsis -->
+<div class="container">
+    <section>
+        <h3 class="title-sinopsis">Sinopsis</h3>
+        <p>{{ film.synopsis }}</p>
+    </section>
+</div>
+
+ <!-- Trailer de youtube -->
+ <div class="container">
+    <div class="row">
+        <div class="col">
+            <div id="video-container" class=" centrar embed-responsive embed-responsive-16by9" data-video-link="{{ film.trailer_link }}"></div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script src="{% static 'JS/compra.js' %}"></script>
+{% endblock %}
+{% endblock %}

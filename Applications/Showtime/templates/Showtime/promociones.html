@@ -1,0 +1,44 @@
+{% extends 'CinemaSystemApp/base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'styles/promociones.css' %}">
+{% endblock %}
+
+{% block title %}Promociones{% endblock %}
+
+{% block content %}
+    
+    <!-- Cambiooooooooooooo -->
+
+    <div class="container mt-4">
+        <h1 class="text-white my-5">Promociones</h1>
+        <div class="row">
+            {% for price in prices %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="row g-0">
+                        <!-- Imagen -->
+                        <div class="col-3 card-img">
+                            <img src="{{ price.image.url }}" class="img-fluid mx-auto d-block" alt="{{ price.name }}">
+                        </div>
+                        <!-- Línea divisoria -->
+                        <div class="col-auto d-flex align-items-center">
+                            <div class="vr"></div>
+                        </div>
+                        <!-- Texto -->
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title text-truncate">{{ price.name }}</h5>
+                                <p class="card-text text-truncate">{{ price.description }}</p>
+                                <p class="card-text">Cantidad de entradas: {{ price.ticket_quantity }}</p>
+                                <p class="precio">${{ price.amount }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+{% endblock %}

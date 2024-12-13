@@ -23,8 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Applications.CinemaSystemApp.urls')),
     path('', include('Applications.Movie.urls')),
-    path('Register/', include('Applications.Register.urls')),
-    path('comprar/', include('Applications.Showtime.urls')),
+    path('register/', include('Applications.Register.urls')),
+    path('horarios/', include('Applications.Showtime.urls', namespace='showtime_horarios')),
+    path('', include('Applications.Showtime.urls', namespace='showtime_comprar_entradas')),
+    path('', include('Applications.Adminpanel.urls')),
 ]
 
 if settings.DEBUG:

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Film, Format, Genre, Age_Restriction, Language
+from .models import Film, Format, Genre, Age_Restriction, Language, Banner
 
 @admin.register(Format)
 class FormatAdmin(admin.ModelAdmin):
@@ -42,4 +42,8 @@ class FilmAdmin(admin.ModelAdmin):
         return ", ".join([fmt.name for fmt in obj.format.all()])
     get_formats.short_description = 'Formatos'
 
-
+@admin.register(Banner)
+class FormatAdmin(admin.ModelAdmin):
+    list_display = ('description','order', 'id_banner')
+    search_fields = ('description',)
+    list_filter = ('description',)

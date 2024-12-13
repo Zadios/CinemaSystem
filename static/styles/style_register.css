@@ -1,0 +1,198 @@
+/* Contenedor del formulario de registro */
+.title-welcome{
+    font-size: 32px;
+    font-weight: 700;
+}
+.subtitulo-bienvenida {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.titulo-beneficios {
+    margin: 0px;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.titulo-beneficio {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.descripcion-beneficio {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.contenedor-bienvenidos-registro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+}
+
+.form-group input,
+.btn-light {
+    box-sizing: border-box;
+}
+
+.form-group label {
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 108%; 
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    padding: 10px;
+    background: #000;
+    color: rgba(167, 167, 167, 1);
+    border: 2px solid rgba(167, 167, 167, 1);
+}
+
+/* Botón de registro */
+.btn-light {
+    width: 108%;
+    height: 75px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+}
+
+/* Columna derecha: Beneficios */
+.contenedor-beneficios {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(148, 148, 148, 1); 
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%; 
+    max-width: 600px;
+    min-height: 670px;
+    margin-left: auto;
+}
+
+/* Estilos de cada beneficio */
+.benefit .col-3 {
+    background-color: rgba(98, 98, 98, 1);
+    border-radius: 0px 8px 8px 0px;
+}
+
+.benefit img{
+   padding: 10px;
+}
+
+/* Media Query para pantallas menores a 1400px */
+@media (max-width: 1400px) {
+    .contenedor-bienvenidos-registro,
+    .contenedor-beneficios {
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center;
+        margin: 20px auto; 
+    }
+
+    .contenedor-bienvenidos-registro h1,
+    .contenedor-bienvenidos-registro p {
+        text-align: start; 
+    }
+    .subtitulo-bienvenida{
+        font-size: 19px;
+    }
+
+    .form-group input,
+    .btn-light {
+        width: 100%; 
+        max-width: 600px; 
+    }
+
+    .contenedor-beneficios {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(148, 148, 148, 1); 
+        border-radius: 10px;
+        width: 100%; 
+        max-width: 600px;
+        min-height: 670px;
+        margin-left: auto;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 1200px) {
+    .col-md-6 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .contenedor-bienvenidos-registro,
+    .contenedor-beneficios {
+        display: flex;  
+        flex-direction: column;  
+        align-items: center;  
+        width: 100%;
+    }
+
+    .contenedor-bienvenidos-registro h1 {
+        font-size: 30px;
+    }
+
+    .contenedor-bienvenidos-registro p,
+    .form-group label,
+    .mt-2 p,
+    .mt-2 a {
+        font-size: 19px;
+    }
+
+    .form-group input{
+        width: 100%;  
+    }
+    .benefit img{
+        padding: 20px;
+    }
+}
+@media (max-width: 570px) {
+    .titulo-beneficios{
+        font-size: 26px;
+    }
+    .row {
+        display: flex;  
+        flex-direction: column;  
+        align-items: start;  
+        text-align: justify;
+        width: 100%;
+    }
+    .col-3{
+        margin-left: 10px;
+        width: 100%;
+        height: 90px;
+        margin-bottom: 10px;
+    }
+    .benefit .col-3{
+        border-radius: 8px;
+    }
+    .benefit img{
+        width: 100%;
+        height: 100%;
+    }
+    .col-9 {
+        flex: 0 0 auto;
+        width: 100%;
+    }  
+}

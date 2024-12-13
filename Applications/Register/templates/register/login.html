@@ -1,18 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
-</head>
-<body>
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+{% extends 'CinemaSystemApp/base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'styles/style_login.css' %}" />
+{% endblock %}
+
+{% block content %}
+<main class="container custom-container my-5">
+    <div class="row">
+        <!-- Columna Izquierda: Registro -->
+        <div class="col-md-6 contenedor-bienvenidos-registro">
+            <h1 class="titulo-bienvenida">¡Hola de nuevo!</h1>
+            <p class="subtitulo-bienvenida my-4">Ingresa colocando los datos que usaste durante tu registro</p>
+            <form method="POST" action="{% url 'register:login' %}">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}" class="mt-2">Correo electrónico</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="{{ form.password.id_for_label }}" class="mt-2">Contraseña</label>
+                    {{ form.password }}
+                </div>
+
+                <!-- Mostrar errores si los hay -->
+                {% if messages %}
+                    <div class="error" style="color: red; font-size: 16px;">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <button type="submit" class="btn btn-dark btn-ingresar">Ingresar</button>
+                <a class="btn btn-outline-dark btn-block btn-registrar mb-5" href="{% url 'register:register' %}">Regístrate aquí</a>
+            </form>
+        </div>
+        
+        <!-- Columna Derecha: Beneficios -->
+        <div class="col-md-6 contenedor-beneficios">
+            <div>
+                <h1 class="titulo-beneficios">Beneficios de tener una cuenta en <span>Holiday Cinemas</span></h1>
+                <div class="row benefit mt-5">
+                    <div class="col-3">
+                        <img src="{% static 'img/icons/Ticket.svg' %}" alt="Beneficio 1" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <h3 class="titulo-beneficio">Beneficio 1</h3>
+                        <p class="descripcion-beneficio">Lorem ipsum dolor sit amet consectetur adipiscing elit ut, torquent eros eleifend ridiculus.</p>
+                    </div>
+                </div>
+                <div class="row benefit mt-3">
+                    <div class="col-3">
+                        <img src="{% static 'img/icons/tdesign_money.svg' %}" alt="Beneficio 2" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <h3 class="titulo-beneficio">Beneficio 2</h3>
+                        <p class="descripcion-beneficio">Lorem ipsum dolor sit amet consectetur adipiscing elit ut, torquent eros eleifend ridiculus.</p>
+                    </div>
+                </div>
+                <div class="row benefit mt-3">
+                    <div class="col-3">
+                        <img src="{% static 'img/icons/mdi_discount.svg' %}" alt="Beneficio 3" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <h3 class="titulo-beneficio">Beneficio 3</h3>
+                        <p class="descripcion-beneficio">Lorem ipsum dolor sit amet consectetur adipiscing elit ut, torquent eros eleifend ridiculus.</p>
+                    </div>
+                </div>
+                <div class="row benefit mt-3">
+                    <div class="col-3">
+                        <img src="{% static 'img/icons/ph_popcorn-fill.svg' %}" alt="Beneficio 4" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <h3 class="titulo-beneficio">Beneficio 4</h3>
+                        <p class="descripcion-beneficio">Lorem ipsum dolor sit amet consectetur adipiscing elit ut, torquent eros eleifend ridiculus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
