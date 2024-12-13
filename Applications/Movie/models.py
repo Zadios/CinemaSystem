@@ -70,3 +70,31 @@ class Film(models.Model):
                 os.remove(image_path)
         # Llamamos al método delete() original para eliminar el registro de la base de datos
         super().delete(*args, **kwargs)
+
+class Banner(models.Model):
+    id_banner = models.AutoField(primary_key=True)
+    order = models.PositiveIntegerField('Orden', default=0)
+    description = models.CharField('Descripción', max_length=30, null=True)
+    image = models.ImageField('Imagen', upload_to='bannerImages/', null=True, blank=True)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'Banner'
+        verbose_name_plural = 'Banners'
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:  # Si el banner es nuevo
+            # Empujar banners existentes hacia adelante si tienen la misma prioridad o superior
+            Banner.objects.filter(order__gte=self.order).update(order=models.F('order') + 1)
+        else:  # Si es una actualización de un banner existente
+            original_order = Banner.objects.get(pk=self.pk).order
+            if self.order != original_order:
+                if self.order > original_order:  # Si el nuevo orden es mayor
+                    Banner.objects.filter(order__gt=original_order, order__lte=self.order).update(order=models.F('order') - 1)
+                else:  # Si el nuevo orden es menor
+                    Banner.objects.filter(order__gte=self.order, order__lt=original_order).update(order=models.F('order') + 1)
+
+        super().save(*args, **kwargs)  # Guardar el banner
+
+    def __str__(self):
+        return f"Banner {self.id_banner}: {self.description if self.description else 'Sin descripción'}"
