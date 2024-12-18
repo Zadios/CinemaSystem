@@ -6,6 +6,8 @@ from .models import Users, CustomUser
 from django.http import HttpResponse
 from .forms import LoginForm
 from django.contrib.auth.hashers import check_password 
+from django.contrib.auth.decorators import login_required
+
 
 def register_view(request):
     if request.method == 'POST':
@@ -55,8 +57,9 @@ def login_view(request):
 
     return render(request, 'register/login.html', {'form': form})
 
-
-
+@login_required
+def profile_view(request):
+    return render(request, 'register/profile.html')
 
 
 

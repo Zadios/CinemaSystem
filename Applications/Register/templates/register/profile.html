@@ -1,0 +1,16 @@
+{% extends 'CinemaSystemApp/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Mi Perfil</h1>
+
+        <!-- Mostrar el email del usuario si está logueado -->
+        <p>Bienvenido, {{ user.email }}</p>
+
+        <!-- Botón para cerrar sesión -->
+        <form method="POST" action="{% url 'register:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+        </form>
+    </div>
+{% endblock %}
