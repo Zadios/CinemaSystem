@@ -2,10 +2,7 @@
 
 {% block content %}
     <div class="container">
-        <h1>Mi Perfil</h1>
-
-        <!-- Mostrar el email del usuario si está logueado -->
-        <p>Bienvenido, {{ user.email }}</p>
+        <h1>Mi Perfil - {{ user.email }}</h1>
 
         <!-- Botón para cerrar sesión -->
         <form method="POST" action="{% url 'register:logout' %}">

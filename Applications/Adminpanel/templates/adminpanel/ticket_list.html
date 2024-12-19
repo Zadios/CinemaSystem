@@ -7,11 +7,26 @@
 {% block content %}
     <div class="container">
         <h1>Lista de Tickets</h1>
+
+        <!-- Barra de búsqueda -->
+        <form method="get" action="{% url 'adminpanel:ticket_list' %}">
+            <input 
+                type="text" 
+                name="search" 
+                placeholder="Buscar por código de ticket" 
+                value="{{ request.GET.search }}" 
+                class="search-bar"
+            >
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+
         <table>
             <thead>
                 <tr>
                     <th>Código del Ticket</th>
                     <th>Show (Función)</th>
+                    <th>Formato</th>
+                    <th>Idioma</th>
                     <th>Cantidad</th>
                     <th>Total Pagado</th>
                     <th>Estado</th>
@@ -23,13 +38,15 @@
                 <tr>
                     <td>{{ ticket.ticket_code }}</td>
                     <td>{{ ticket.show }}</td>
+                    <td>{{ ticket.show.format }}</td>
+                    <td>{{ ticket.show.language }}</td>
                     <td>{{ ticket.total_tickets }}</td>
                     <td>${{ ticket.total_price }}</td>
                     <td>
                         {% if ticket.status %}
-                            <span style="color: green;">✔</span>
+                            <span style="color: green;">No entregado</span>
                         {% else %}
-                            <span style="color: red;">X</span>
+                            <span style="color: red;">Entregado</span>
                         {% endif %}
                     </td>
                     <td>

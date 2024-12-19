@@ -21,7 +21,11 @@ def admin(request):
 
 @superuser_required
 def ticket_list(request):
-    tickets = Ticket.objects.all()  # Obtiene todos los tickets
+    search_query = request.GET.get('search', '')  # Obtener el término de búsqueda del parámetro GET
+    if search_query:
+        tickets = Ticket.objects.filter(ticket_code__icontains=search_query)  # Filtrar tickets por código
+    else:
+        tickets = Ticket.objects.all()  # Mostrar todos los tickets si no hay búsqueda
     return render(request, 'adminpanel/ticket_list.html', {'tickets': tickets})
 
 @superuser_required

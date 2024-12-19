@@ -51,10 +51,8 @@
                         <div class="navbar-nav ms-auto">
                             {% if user.is_authenticated %}
                                 <a href="{% url 'register:profile' %}" class="nav-link">Mi Cuenta</a>
-                                <p>{{ user.email }}</p>
                             {% else %}
                                 <a href="{% url 'register:login' %}" class="nav-link">Mi Cuenta</a>
-                                <p>Invitado</p>
                             {% endif %}
                         </div>
                     </div>
