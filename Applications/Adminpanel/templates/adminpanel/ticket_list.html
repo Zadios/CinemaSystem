@@ -24,10 +24,12 @@
             <thead>
                 <tr>
                     <th>Código del Ticket</th>
-                    <th>Show (Función)</th>
+                    <th>Película</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
                     <th>Formato</th>
                     <th>Idioma</th>
-                    <th>Cantidad</th>
+                    <th>Entradas</th>
                     <th>Total Pagado</th>
                     <th>Estado</th>
                     <th>Acciones</th>
@@ -37,7 +39,9 @@
                 {% for ticket in tickets %}
                 <tr>
                     <td>{{ ticket.ticket_code }}</td>
-                    <td>{{ ticket.show }}</td>
+                    <td>{{ ticket.show.film.name }}</td>
+                    <td>{{ ticket.show.show_date |date:"d/m/Y" }}</td>
+                    <td>{{ ticket.show.show_time }}</td>
                     <td>{{ ticket.show.format }}</td>
                     <td>{{ ticket.show.language }}</td>
                     <td>{{ ticket.total_tickets }}</td>
@@ -56,10 +60,10 @@
                             <button type="submit" class="mark-delivered">Entregar</button>
                         </form>
                         <!-- Botón para eliminar -->
-                        <form action="{% url 'adminpanel:delete_ticket' ticket.id %}" method="post" style="display:inline;">
+                        <!-- <form action="{% url 'adminpanel:delete_ticket' ticket.id %}" method="post" style="display:inline;">
                             {% csrf_token %}
                             <button type="submit" class="delete">Eliminar</button>
-                        </form>
+                        </form> -->
                     </td>
                 </tr>
                 {% endfor %}
