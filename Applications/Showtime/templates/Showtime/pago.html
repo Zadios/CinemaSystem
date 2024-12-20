@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'styles/pago.css' %}">
 {% endblock %}
 
-{% block title %}Pago{% endblock %}
+{% block title %}Holiday Cinemas | Pago{% endblock %}
 
 {% block content %}
     <!-- Formulario de pago -->
@@ -88,4 +88,8 @@
             </form>
         </div>
     </div>
+
+{% block scripts %}
+<script src="{% static 'JS/pago.js' %}"></script>
+{% endblock %}
 {% endblock %}

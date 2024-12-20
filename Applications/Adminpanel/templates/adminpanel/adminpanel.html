@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administrador</title>
-</head>
-<body>
+{% extends 'CinemaSystemApp/base.html' %}
+{% load static %}
+
+{% block title %}Holiday Cinemas | Administración{% endblock %}
+
+{% block content %}
+
+<div class="container">
     <h1>¡Bienvenido al Panel de Administrador!</h1>
-    <p>Esto es solo una página de prueba.</p>
-</body>
-</html>
+    <a href="{% url 'adminpanel:ticket_list' %}" class="btn btn-light w-20">Gestionar Tickets</a>
+</div>
+
+    
+
+
+{% endblock %}

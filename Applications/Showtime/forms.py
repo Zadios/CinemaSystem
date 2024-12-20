@@ -1,4 +1,5 @@
 from django import forms
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class PagoForm(forms.Form):
     numero_tarjeta = forms.CharField(
@@ -11,20 +12,27 @@ class PagoForm(forms.Form):
     )
     fecha_caducidad = forms.CharField(
         label="Fecha de Caducidad",
-        max_length=7,  # Para formato "MM/AAAA"
+        max_length=7,  # Máximo 7 caracteres para "MM/AAAA"
         widget=forms.TextInput(attrs={
             'placeholder': 'MM/AAAA',
-            'class': 'form-control'
-            })
+            'class': 'form-control',
+            'inputmode': 'numeric',
+        })
     )
-    cvv = forms.CharField(
+    cvv = forms.IntegerField(
         label="Código de seguridad",
-        max_length=4,  # Permitir 3 o 4 dígitos
+        validators=[
+            MaxValueValidator(999),  # Máximo número de 3 dígitos
+            MinValueValidator(100), # Mínimo número de 3 dígitos
+        ],
         widget=forms.PasswordInput(attrs={
             'placeholder': '123',
-            'class': 'form-control'
-            })
+            'class': 'form-control',
+            'maxlength': '3',  # Limita a 3 caracteres en el frontend
+            'inputmode': 'numeric',  # Teclado numérico en dispositivos móviles
+        })
     )
+    
     nombre_titular = forms.CharField(
         label="Titular de la Tarjeta",
         max_length=100,
@@ -47,9 +55,9 @@ class PagoForm(forms.Form):
             'class': 'form-control'
             })
     )
-    dni = forms.CharField(
+    dni = forms.IntegerField(
         label="DNI",
-        max_length=10,
+        validators=[MaxValueValidator(99999999)],
         widget=forms.TextInput(attrs={
             'placeholder': 'Número de DNI',
             'class': 'form-control'

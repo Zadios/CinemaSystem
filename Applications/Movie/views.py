@@ -5,7 +5,7 @@ from Applications.Showtime.models import Movie_Theater
 
 
 def pelicula_list(request):
-    films = Film.objects.all()
+    films = Film.objects.exclude(image__isnull=True).exclude(image__exact='')
     banners = Banner.objects.all()
     return render(request, 'movie/index.html', {'films': films, 'banners': banners})
 

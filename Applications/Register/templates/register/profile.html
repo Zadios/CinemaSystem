@@ -1,0 +1,15 @@
+{% extends 'CinemaSystemApp/base.html' %}
+
+{% block title %}Holiday Cinemas | Perfil{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Mi Perfil - {{ user.email }}</h1>
+
+        <!-- Botón para cerrar sesión -->
+        <form method="POST" action="{% url 'register:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+        </form>
+    </div>
+{% endblock %}
